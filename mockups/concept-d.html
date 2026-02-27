@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crossroads Commons — Concept D: Sol y Sombra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Native Record Script';
+      src: url('../fonts/Demonativerecordscript-KVaw7.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #4C1241;
+      --sky-blue: #4794B5;
+      --magenta: #D43365;
+      --orange: #E66000;
+      --yellow: #F5A623;
+      --cream: #F5F4EE;
+      --charcoal: #261F22;
+      --silver: #8D8786;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .script-callout {
+      font-family: 'Native Record Script', cursive;
+      font-size: 52px;
+      margin-bottom: 8px;
+    }
+
+    /* ========================================
+       NAV — Dark, blends into hero
+    ======================================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--charcoal);
+    }
+    .nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--magenta) 0px, var(--magenta) 4px,
+        transparent 4px, transparent 8px
+      );
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 48px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .nav-logo { height: 38px; }
+    .nav-center { display: flex; gap: 36px; align-items: center; }
+    .nav-center a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-center a:hover { color: var(--white); }
+    .nav-right { display: flex; align-items: center; }
+    .nav-cta {
+      background: var(--magenta);
+      color: var(--white);
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 51, 101, 0.4);
+    }
+
+    /* ========================================
+       HERO — Dark with reja lattice
+    ======================================== */
+    .hero {
+      min-height: 100vh;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 50%;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent, transparent 20px,
+          rgba(212,51,101,0.05) 20px, rgba(212,51,101,0.05) 22px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent, transparent 20px,
+          rgba(71,148,181,0.04) 20px, rgba(71,148,181,0.04) 22px
+        );
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 600px;
+      padding: 140px 64px 100px;
+    }
+    .hero-overline {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    .hero .script-callout {
+      color: var(--yellow);
+      font-size: 46px;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: 58px;
+      font-weight: 800;
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+    .hero h1 .accent {
+      color: var(--magenta);
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-underline-offset: 6px;
+      text-decoration-thickness: 3px;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* ========================================
+       BUTTONS
+    ======================================== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      border: none; cursor: pointer; transition: all 0.25s;
+      letter-spacing: 0.3px;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+    .btn-magenta { background: var(--magenta); color: var(--white); }
+    .btn-yellow { background: var(--yellow); color: var(--charcoal); }
+    .btn-outline-dark { background: transparent; color: var(--charcoal); border: 2px solid rgba(38,31,34,0.2); }
+    .btn-outline-dark:hover { border-color: var(--charcoal); background: rgba(38,31,34,0.04); }
+    .btn-outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.3); }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ========================================
+       REJA DIVIDER — Diagonal candy-stripe
+    ======================================== */
+    .reja-divider {
+      height: 6px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--magenta) 0px, var(--magenta) 4px,
+        var(--yellow) 4px, var(--yellow) 8px,
+        var(--sky-blue) 8px, var(--sky-blue) 12px,
+        var(--orange) 12px, var(--orange) 16px
+      );
+    }
+
+    /* ========================================
+       FEATURES — 2+4 hierarchy layout
+    ======================================== */
+    .features {
+      background: var(--cream);
+      padding: 80px 64px;
+    }
+    .features-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .features-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .features-header .overline {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 16px;
+    }
+    .features-header h2 {
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--charcoal);
+      line-height: 1.15;
+    }
+
+    /* Spotlight row: 2 wide cards */
+    .features-spotlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .spotlight-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px 36px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 5px;
+      transition: width 0.3s;
+    }
+    .spotlight-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .spotlight-card:hover::before { width: 10px; }
+    .spotlight-card:nth-child(1)::before { background: var(--magenta); }
+    .spotlight-card:nth-child(2)::before { background: var(--orange); }
+    .spotlight-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .spotlight-card:nth-child(1) .spotlight-icon { background: rgba(212,51,101,0.1); color: var(--magenta); }
+    .spotlight-card:nth-child(2) .spotlight-icon { background: rgba(230,96,0,0.1); color: var(--orange); }
+    .spotlight-icon .material-symbols-outlined { font-size: 28px; }
+    .spotlight-text h3 { font-size: 22px; font-weight: 800; color: var(--charcoal); margin-bottom: 10px; }
+    .spotlight-text p { font-size: 15px; color: var(--silver); line-height: 1.65; }
+
+    /* Compact row: 4 narrower cards */
+    .features-compact {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .compact-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: all 0.3s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .compact-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
+    .compact-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .compact-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .compact-card:nth-child(1) .compact-dot { background: var(--sky-blue); }
+    .compact-card:nth-child(2) .compact-dot { background: var(--yellow); }
+    .compact-card:nth-child(3) .compact-dot { background: var(--magenta); }
+    .compact-card:nth-child(4) .compact-dot { background: var(--orange); }
+    .compact-card h3 { font-size: 17px; font-weight: 700; color: var(--charcoal); }
+    .compact-card p { font-size: 14px; color: var(--silver); line-height: 1.6; }
+
+    /* ========================================
+       COMMUNITY — Dark centered single-column
+    ======================================== */
+    .community-section {
+      background-color: var(--charcoal);
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent, transparent 18px,
+          rgba(255,255,255,0.02) 18px, rgba(255,255,255,0.02) 20px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent, transparent 18px,
+          rgba(255,255,255,0.02) 18px, rgba(255,255,255,0.02) 20px
+        );
+      padding: 100px 64px;
+      text-align: center;
+    }
+    .community-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .community-inner .overline {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    .community-inner h2 {
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .community-inner > p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+    .community-quote {
+      border-left: 4px solid var(--magenta);
+      padding: 20px 28px;
+      margin: 0 auto 40px;
+      max-width: 560px;
+      text-align: left;
+    }
+    .community-quote p {
+      font-size: 19px;
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+    .community-circles {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .community-circles span {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .community-circles span:nth-child(1) { background: var(--magenta); margin-right: -12px; z-index: 3; }
+    .community-circles span:nth-child(2) { background: var(--sky-blue); margin-right: -12px; z-index: 2; }
+    .community-circles span:nth-child(3) { background: var(--orange); z-index: 1; }
+    .community-circles .material-symbols-outlined { font-size: 28px; color: rgba(255,255,255,0.35); }
+    .community-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========================================
+       CTA — Clean white (unique)
+    ======================================== */
+    .cta-section {
+      background: var(--white);
+      padding: 100px 64px;
+      text-align: center;
+      position: relative;
+    }
+    .cta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .cta-inner .script-callout {
+      color: var(--magenta);
+    }
+    .cta-heading {
+      font-size: 46px;
+      font-weight: 800;
+      color: var(--charcoal);
+      line-height: 1.12;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .cta-heading::before,
+    .cta-heading::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: var(--magenta);
+      transform: rotate(-15deg);
+      flex-shrink: 0;
+    }
+    .cta-heading::after {
+      transform: rotate(15deg);
+    }
+    .cta-inner > p {
+      font-size: 18px;
+      color: var(--silver);
+      line-height: 1.7;
+      margin-bottom: 44px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========================================
+       FOOTER — Charcoal with reja
+    ======================================== */
+    .footer {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+    .footer-reja {
+      height: 8px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--magenta) 0px, var(--magenta) 4px,
+        var(--charcoal) 4px, var(--charcoal) 8px
+      );
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 64px 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .footer-brand img { height: 34px; margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+      max-width: 300px;
+    }
+    .footer-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .footer-dots span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 20px;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 14px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-col p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+    .visit-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--yellow);
+    }
+    .visit-location .material-symbols-outlined { font-size: 20px; }
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ========================================
+       CONCEPT LABEL
+    ======================================== */
+
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
+    @media (max-width: 768px) {
+      .script-callout { font-size: 32px !important; }
+      .nav-inner { padding: 14px 20px; }
+      .nav-center, .nav-right { display: none; }
+      .hero { min-height: auto; }
+      .hero-content { padding: 120px 24px 80px; }
+      .hero h1 { font-size: 40px; }
+      .hero-sub { font-size: 16px; }
+      .hero-buttons { flex-direction: column; }
+      .features { padding: 60px 20px; }
+      .features-header h2 { font-size: 32px; }
+      .features-spotlight { grid-template-columns: 1fr; }
+      .spotlight-card { flex-direction: column; }
+      .features-compact { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .community-section { padding: 80px 24px; }
+      .community-inner h2 { font-size: 32px; }
+      .cta-section { padding: 80px 24px; }
+      .cta-heading { font-size: 34px; flex-direction: column; gap: 10px; }
+      .cta-heading::before, .cta-heading::after { display: none; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .footer-inner { padding: 40px 24px 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Logo-Horizontal-Monotone-White/CC-Logo-Horizontal-Monotone-White.svg" alt="Crossroads Commons" class="nav-logo">
+      <div class="nav-center">
+        <a href="#">About</a>
+        <a href="#">Media</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-cta">
+          <span class="material-symbols-outlined" style="font-size:16px">mail</span>
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-overline">Crossroads Commons</p>
+      <p class="script-callout">Light meets life</p>
+      <h1>Where Community <span class="accent">Comes Alive</span></h1>
+      <p class="hero-sub">A gathering place for families, neighbors, and friends. Crossroads Commons nurtures mind, body, and spirit in the heart of South OKC.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-magenta">
+          <span class="material-symbols-outlined" style="font-size:18px">explore</span>
+          Explore the Commons
+        </a>
+        <a href="#" class="btn btn-outline-white">
+          <span class="material-symbols-outlined" style="font-size:18px">play_arrow</span>
+          Watch Our Story
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REJA DIVIDER -->
+  <div class="reja-divider"></div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-inner">
+      <div class="features-header">
+        <p class="overline">What Awaits You</p>
+        <h2>Something for Everyone</h2>
+      </div>
+
+      <!-- Spotlight: 2 hero features -->
+      <div class="features-spotlight">
+        <div class="spotlight-card">
+          <div class="spotlight-icon">
+            <span class="material-symbols-outlined">groups</span>
+          </div>
+          <div class="spotlight-text">
+            <h3>Community Hall</h3>
+            <p>A welcoming space for gatherings, workshops, celebrations, and neighborhood events that bring us together.</p>
+          </div>
+        </div>
+        <div class="spotlight-card">
+          <div class="spotlight-icon">
+            <span class="material-symbols-outlined">restaurant</span>
+          </div>
+          <div class="spotlight-text">
+            <h3>Zocolo</h3>
+            <p>A vibrant food and culture marketplace celebrating the local traditions that make our neighborhood special.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compact: 4 additional features -->
+      <div class="features-compact">
+        <div class="compact-card">
+          <div class="compact-card-title">
+            <span class="compact-dot"></span>
+            <h3>Soccer Fields</h3>
+          </div>
+          <p>Open fields for youth leagues, family play, and community tournaments.</p>
+        </div>
+        <div class="compact-card">
+          <div class="compact-card-title">
+            <span class="compact-dot"></span>
+            <h3>Healthcare</h3>
+          </div>
+          <p>Accessible health services and wellness programs for the whole family.</p>
+        </div>
+        <div class="compact-card">
+          <div class="compact-card-title">
+            <span class="compact-dot"></span>
+            <h3>Education</h3>
+          </div>
+          <p>Programs and resources for learners of all ages, building brighter futures.</p>
+        </div>
+        <div class="compact-card">
+          <div class="compact-card-title">
+            <span class="compact-dot"></span>
+            <h3>Green Spaces</h3>
+          </div>
+          <p>Parks, trails, and gathering areas to relax, play, and connect with nature.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REJA DIVIDER -->
+  <div class="reja-divider"></div>
+
+  <!-- COMMUNITY -->
+  <section class="community-section">
+    <div class="community-inner">
+      <div class="community-circles">
+        <span><span class="material-symbols-outlined">favorite</span></span>
+        <span><span class="material-symbols-outlined">groups</span></span>
+        <span><span class="material-symbols-outlined">park</span></span>
+      </div>
+      <p class="overline">Our Story</p>
+      <h2>Rooted in Culture, Built for Community</h2>
+      <p>From vibrant gathering spaces to programs that support children and their families, we create an environment where hope is stirred, relationships deepen, and restoration takes root.</p>
+      <div class="community-quote">
+        <p>Crossroads Commons is shaped by the love of God and the warmth of community — a place where every neighbor belongs.</p>
+      </div>
+      <div class="community-buttons">
+        <a href="#" class="btn btn-yellow">
+          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+          Learn More
+        </a>
+        <a href="#" class="btn btn-outline-white">Our History</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REJA DIVIDER -->
+  <div class="reja-divider"></div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <p class="script-callout">Your story starts here!</p>
+      <h2 class="cta-heading">Be Part of Something Beautiful</h2>
+      <p>Whether you're a vendor, volunteer, or visitor — there's a place for you at Crossroads Commons. Come build something meaningful with your neighbors.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-magenta">
+          <span class="material-symbols-outlined" style="font-size:18px">handshake</span>
+          Inquire Today
+        </a>
+        <a href="#" class="btn btn-outline-dark">
+          <span class="material-symbols-outlined" style="font-size:18px">info</span>
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-reja"></div>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Logo-Horizontal-Monotone-White/CC-Logo-Horizontal-Monotone-White.svg" alt="Crossroads Commons">
+          <p>Where South OKC gathers, grows &amp; celebrates. A place shaped by the love of God and the warmth of community.</p>
+          <div class="footer-dots">
+            <span style="background: var(--magenta)"></span>
+            <span style="background: var(--sky-blue)"></span>
+            <span style="background: var(--orange)"></span>
+            <span style="background: var(--yellow)"></span>
+            <span style="background: var(--cream)"></span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#">About</a>
+          <a href="#">Media Coverage</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#">Contact / Inquire</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <div class="visit-location">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>Get Directions</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Crossroads Commons. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

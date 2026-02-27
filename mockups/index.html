@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crossroads Commons — Front Page Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #4C1241;
+      --sky-blue: #4794B5;
+      --magenta: #D43365;
+      --orange: #E66000;
+      --yellow: #F5A623;
+      --cream: #F5F4EE;
+      --charcoal: #261F22;
+      --silver: #8D8786;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .logo { height: 56px; margin-bottom: 24px; }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--silver);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Section labels */
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--magenta);
+      text-align: center;
+      margin-bottom: 12px;
+      margin-top: 48px;
+    }
+    .section-label:first-of-type { margin-top: 32px; }
+    .section-desc {
+      font-size: 14px;
+      color: var(--silver);
+      text-align: center;
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 740px;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--charcoal);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 64px rgba(76, 18, 65, 0.12);
+    }
+
+    .card-preview {
+      aspect-ratio: 16/10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+      position: relative;
+    }
+    .card-preview img { height: 72px; opacity: 0.7; }
+
+    /* Latin & SW concepts */
+    .grid .card:nth-child(1) .card-preview {
+      background: linear-gradient(135deg, var(--orange), var(--yellow));
+    }
+    .grid .card:nth-child(2) .card-preview {
+      background: linear-gradient(135deg, var(--charcoal), #3d2f33);
+    }
+    .grid .card:nth-child(3) .card-preview {
+      background: linear-gradient(135deg, var(--magenta), var(--orange), var(--yellow));
+    }
+
+    /* General concepts */
+    .grid-2 .card:nth-child(1) .card-preview {
+      background: linear-gradient(135deg, var(--purple), #6b1f5a);
+    }
+    .grid-2 .card:nth-child(2) .card-preview {
+      background: linear-gradient(135deg, var(--magenta), var(--orange));
+    }
+
+    .card-body { padding: 28px; }
+    .card-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 8px;
+    }
+    .card-label-orange { color: var(--orange); }
+    .card-body h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .card-body p {
+      font-size: 14px;
+      color: var(--silver);
+      line-height: 1.6;
+    }
+    .card-body .new-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .footer-note {
+      margin-top: 48px;
+      font-size: 13px;
+      color: var(--silver);
+      text-align: center;
+      max-width: 600px;
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; max-width: 500px; }
+      .grid-2 { grid-template-columns: 1fr; max-width: 500px; }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="../CrossRoads-BrandPackage/Logo Package/Color Versions/CC-Logo-Stacked-Color-ForOnLightBG/CC-Logo-Stacked-Color-ForOnLightBG.svg" alt="Crossroads Commons" class="logo">
+  <h1>Front Page Mockups</h1>
+  <p class="subtitle">Five design directions for the Crossroads Commons website</p>
+
+  <p class="section-label">General Concepts</p>
+  <p class="section-desc">Two foundational design directions exploring layout, tone, and visual hierarchy.</p>
+
+  <div class="grid-2">
+    <a href="concept-a.html" class="card">
+      <div class="card-preview">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Icon-Monotone-White/CC-Icon-Monotone-White.svg" alt="">
+      </div>
+      <div class="card-body">
+        <p class="card-label">Concept A</p>
+        <h2>Community Hub</h2>
+        <p>Editorial magazine feel with large typography hero, alternating feature bands, split-layout CTA, and centered stack footer.</p>
+      </div>
+    </a>
+    <a href="concept-b.html" class="card">
+      <div class="card-preview">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Icon-Monotone-White/CC-Icon-Monotone-White.svg" alt="">
+      </div>
+      <div class="card-body">
+        <p class="card-label">Concept B</p>
+        <h2>Vibrant &amp; Bold</h2>
+        <p>Energetic split-screen hero with photo mosaic, stats bar, bold colored tiles, and gradient CTA banner.</p>
+      </div>
+    </a>
+  </div>
+
+  <p class="section-label">Latin &amp; Southwestern Concepts</p>
+  <p class="section-desc">Three culturally resonant designs inspired by Southwestern architecture, light and shadow, and botanical gardens.</p>
+
+  <div class="grid">
+    <a href="concept-c.html" class="card">
+      <div class="card-preview">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Icon-Monotone-White/CC-Icon-Monotone-White.svg" alt="">
+      </div>
+      <div class="card-body">
+        <p class="card-label card-label-orange">Concept C <span class="new-badge">New</span></p>
+        <h2>Adobe Horizon</h2>
+        <p>Southwestern warmth with desert mesa hero layers, arch-shaped feature icons, sunset gradient CTA, and stepped pyramid dividers.</p>
+      </div>
+    </a>
+    <a href="concept-d.html" class="card">
+      <div class="card-preview">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Icon-Monotone-White/CC-Icon-Monotone-White.svg" alt="">
+      </div>
+      <div class="card-body">
+        <p class="card-label card-label-orange">Concept D <span class="new-badge">New</span></p>
+        <h2>Sol y Sombra</h2>
+        <p>Bold light-and-shadow drama with dark hero, diagonal lattice patterns, 2+4 feature hierarchy, and clean white CTA.</p>
+      </div>
+    </a>
+    <a href="concept-e.html" class="card">
+      <div class="card-preview">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Icon-Monotone-White/CC-Icon-Monotone-White.svg" alt="">
+      </div>
+      <div class="card-body">
+        <p class="card-label card-label-orange">Concept E <span class="new-badge">New</span></p>
+        <h2>Jardin</h2>
+        <p>Organic botanical garden aesthetic with overlapping bloom circles, staggered masonry cards, garden-path dot dividers, and soft curves.</p>
+      </div>
+    </a>
+  </div>
+
+  <p class="footer-note">All mockups use brand colors, typography (Plus Jakarta Sans), and logos from the official Brand Style Guide v1.0. Concepts C, D &amp; E draw from Latin and Southwestern design traditions.</p>
+
+</body>
+</html>

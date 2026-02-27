@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crossroads Commons — Concept B: Vibrant & Bold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Native Record Script';
+      src: url('../fonts/Demonativerecordscript-KVaw7.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    .script-callout, .cta-banner .script-callout, .cta-section .script-callout, .community-cta .script-callout, .cta-testimonio .script-callout {
+      font-family: 'Native Record Script', cursive;
+      font-size: 52px;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    :root {
+      --purple: #4C1241;
+      --sky-blue: #4794B5;
+      --magenta: #D43365;
+      --orange: #E66000;
+      --yellow: #F5A623;
+      --cream: #F5F4EE;
+      --charcoal: #261F22;
+      --silver: #8D8786;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: var(--white);
+      height: 72px;
+    }
+    .nav-logo { height: 36px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--charcoal); text-decoration: none;
+      font-size: 15px; font-weight: 600; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--magenta); }
+    .nav-cta {
+      background: var(--purple) !important; color: var(--white) !important;
+      padding: 10px 24px !important; border-radius: 10px !important;
+    }
+    .nav-cta:hover { background: var(--magenta) !important; color: var(--white) !important; }
+
+    /* ── HERO — full-width colorful split ── */
+    .hero {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      min-height: min(calc(100vh - 72px), 720px);
+    }
+    .hero-left {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px;
+      position: relative;
+    }
+    /* Decorative stripe on left edge */
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 8px;
+      background: linear-gradient(to bottom, var(--sky-blue), var(--yellow), var(--magenta), var(--orange));
+    }
+    .hero-left .label {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--magenta); margin-bottom: 20px;
+    }
+    .hero-left h1 {
+      font-size: 54px; font-weight: 800; line-height: 1.1;
+      color: var(--charcoal); margin-bottom: 24px;
+    }
+    .hero-left h1 span { color: var(--magenta); text-decoration: underline; text-decoration-color: var(--yellow); text-underline-offset: 6px; text-decoration-thickness: 4px; }
+    .hero-left p {
+      font-size: 18px; color: var(--silver); line-height: 1.7;
+      max-width: 480px; margin-bottom: 40px;
+    }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-magenta { background: var(--magenta); color: var(--white); }
+    .btn-outline-dark { background: transparent; color: var(--charcoal); border: 2px solid var(--charcoal); }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background: #f3f1ec;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 110%;
+      height: 110%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+    }
+
+    /* ── COLOR BAR ── */
+    .color-bar {
+      display: grid; grid-template-columns: repeat(5, 1fr); height: 8px;
+    }
+    .color-bar > div:nth-child(1) { background: var(--purple); }
+    .color-bar > div:nth-child(2) { background: var(--sky-blue); }
+    .color-bar > div:nth-child(3) { background: var(--magenta); }
+    .color-bar > div:nth-child(4) { background: var(--orange); }
+    .color-bar > div:nth-child(5) { background: var(--yellow); }
+
+    /* ── STATS BANNER ── */
+    .stats {
+      background: linear-gradient(135deg, var(--charcoal) 0%, var(--purple) 100%);
+      padding: 48px 80px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; max-width: 1100px; margin: 0 auto; text-align: center;
+    }
+    .stat-number {
+      font-size: 56px; font-weight: 800; line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-number.c1 { color: var(--sky-blue); }
+    .stat-number.c2 { color: var(--magenta); }
+    .stat-number.c3 { color: var(--yellow); }
+    .stat-number.c4 { color: var(--orange); }
+    .stats-grid p {
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    /* ── PLACES ── */
+    .places {
+      padding: 100px 80px; max-width: 1280px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--magenta); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 42px; font-weight: 800; color: var(--charcoal); margin-bottom: 48px;
+      text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 8px; text-decoration-thickness: 4px;
+    }
+    .places-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .place-tile {
+      padding: 40px 32px;
+      border-radius: 20px;
+      text-align: center;
+      color: var(--white);
+      transition: all 0.2s;
+    }
+    .place-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    .place-tile .material-symbols-outlined {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .place-tile h3 {
+      font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--white);
+    }
+    .place-tile p {
+      font-size: 14px; color: var(--white); opacity: 0.85; line-height: 1.6;
+    }
+    .place-tile:nth-child(1) { background: var(--sky-blue); }
+    .place-tile:nth-child(2) { background: var(--magenta); }
+    .place-tile:nth-child(3) { background: var(--orange); }
+    .place-tile:nth-child(4) { background: var(--yellow); color: var(--charcoal); }
+    .place-tile:nth-child(4) h3 { color: var(--charcoal); }
+    .place-tile:nth-child(4) p { color: var(--charcoal); opacity: 0.7; }
+    .place-tile:nth-child(5) { background: var(--purple); }
+    .place-tile:nth-child(6) { background: var(--sky-blue); }
+
+    /* ── EVENTS HORIZONTAL SCROLL ── */
+    .events {
+      background: var(--cream); padding: 100px 0;
+    }
+    .events-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+    .events-scroll {
+      display: flex; gap: 24px; overflow-x: auto; padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+    }
+    .events-scroll::-webkit-scrollbar { height: 4px; }
+    .events-scroll::-webkit-scrollbar-track { background: transparent; }
+    .events-scroll::-webkit-scrollbar-thumb { background: var(--silver); border-radius: 4px; }
+    .event-card {
+      min-width: 340px; background: var(--white); border-radius: 16px;
+      overflow: hidden; scroll-snap-align: start; flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .event-card:hover { transform: translateY(-4px); }
+    .event-color-bar { height: 6px; }
+    .event-card:nth-child(1) .event-color-bar { background: linear-gradient(90deg, var(--magenta), var(--orange)); }
+    .event-card:nth-child(2) .event-color-bar { background: linear-gradient(90deg, var(--sky-blue), var(--purple)); }
+    .event-card:nth-child(3) .event-color-bar { background: linear-gradient(90deg, var(--yellow), var(--orange)); }
+    .event-card:nth-child(4) .event-color-bar { background: linear-gradient(90deg, var(--purple), var(--magenta)); }
+    .event-body { padding: 28px; }
+    .event-date-badge {
+      display: inline-flex; flex-direction: column; align-items: center;
+      background: var(--cream); border-radius: 10px; padding: 10px 16px;
+      margin-bottom: 16px;
+    }
+    .event-date-badge .month {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--magenta);
+    }
+    .event-date-badge .day {
+      font-size: 28px; font-weight: 800; color: var(--charcoal); line-height: 1;
+    }
+    .event-body h3 {
+      font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--charcoal);
+    }
+    .event-body p { font-size: 14px; color: var(--silver); line-height: 1.5; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      position: relative; padding: 100px 80px; overflow: hidden;
+      background: linear-gradient(135deg, var(--magenta) 0%, var(--orange) 100%);
+      text-align: center;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(76, 18, 65, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(245, 166, 35, 0.15) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-banner .inner { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+    .cta-banner h2 {
+      font-size: 44px; font-weight: 800; color: var(--white);
+      margin-bottom: 20px; line-height: 1.15;
+    }
+    .cta-banner p {
+      font-size: 18px; color: rgba(255,255,255,0.85);
+      margin-bottom: 36px; line-height: 1.6;
+    }
+    .btn-white { background: var(--white); color: var(--magenta); }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      padding: 80px; text-align: center; background: var(--white);
+    }
+    .newsletter h3 {
+      font-size: 28px; font-weight: 800; margin-bottom: 12px; color: var(--charcoal);
+    }
+    .newsletter p {
+      font-size: 16px; color: var(--silver); margin-bottom: 28px;
+    }
+    .newsletter-form {
+      display: flex; gap: 12px; max-width: 480px; margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1; padding: 14px 20px; border: 2px solid #e0e0e0;
+      border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; outline: none; transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--magenta); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--purple); color: var(--white);
+      padding: 0 80px 32px;
+    }
+    .footer-stripe { display: flex; height: 4px; }
+    .footer-stripe span { flex: 1; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      max-width: 1200px; margin: 0 auto 48px;
+      padding-top: 48px;
+    }
+    .footer-brand img { height: 36px; margin-bottom: 12px; }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 14px; max-width: 300px; line-height: 1.6; }
+    .footer-col h4 {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 16px; color: var(--yellow);
+    }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 14px; margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-col p {
+      color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.6;
+    }
+    .footer-col .visit-location {
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.55); font-size: 14px; margin-top: 4px;
+    }
+    .footer-col .visit-location .material-symbols-outlined {
+      font-size: 20px; color: var(--yellow);
+    }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center; font-size: 13px; color: rgba(255,255,255,0.35);
+    }
+
+    /* ── CONCEPT LABEL ── */
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 300px; }
+      .hero-left { padding: 48px 24px; }
+      .hero-left h1 { font-size: 36px; }
+      .stats { padding: 32px 24px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .places { padding: 60px 24px; }
+      .places-grid { grid-template-columns: 1fr; }
+      .events-inner { padding: 0 24px; }
+      .cta-banner { padding: 60px 24px; }
+      .script-callout { font-size: 32px !important; }
+      .newsletter { padding: 48px 24px; }
+      .footer { padding: 48px 24px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <img src="../CrossRoads-BrandPackage/Logo Package/Color Versions/CC-Logo-Horizontal-Color-ForOnLightBG/CC-Logo-Horizontal-Color-ForOnLightBG.svg" alt="Crossroads Commons" class="nav-logo">
+    <div class="nav-links">
+      <a href="#">About</a>
+      <a href="#">Media</a>
+      <a href="#">Blog</a>
+      <a href="#" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="label">Crossroads Commons</p>
+      <h1>Where Community <span>Comes Alive</span></h1>
+      <p>A vibrant gathering place in South OKC where people, paths, and stories converge in a place shaped by the love of God.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-magenta">
+          <span class="material-symbols-outlined" style="font-size:20px">explore</span>
+          Explore the Commons
+        </a>
+        <a href="#" class="btn btn-outline-dark">
+          <span class="material-symbols-outlined" style="font-size:20px">mail</span>
+          Get in Touch
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="images/family.png" alt="Happy family at Crossroads Commons">
+    </div>
+  </section>
+
+  <!-- COLOR BAR -->
+  <div class="color-bar"><div></div><div></div><div></div><div></div><div></div></div>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-number c1">50+</div>
+        <p>Local Vendors</p>
+      </div>
+      <div>
+        <div class="stat-number c2">12</div>
+        <p>Community Programs</p>
+      </div>
+      <div>
+        <div class="stat-number c3">5K+</div>
+        <p>Monthly Visitors</p>
+      </div>
+      <div>
+        <div class="stat-number c4">365</div>
+        <p>Days of Welcome</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLACES -->
+  <section class="places">
+    <p class="section-label">What's at Crossroads</p>
+    <h2 class="section-title">Discover Your Place</h2>
+    <div class="places-grid">
+      <div class="place-tile">
+        <span class="material-symbols-outlined">groups</span>
+        <h3>Community Hall</h3>
+        <p>A welcoming space for workshops, events, and gatherings that bring neighbors together.</p>
+      </div>
+      <div class="place-tile">
+        <span class="material-symbols-outlined">sports_soccer</span>
+        <h3>Soccer Fields</h3>
+        <p>Open fields for youth leagues, family play, and community tournaments year-round.</p>
+      </div>
+      <div class="place-tile">
+        <span class="material-symbols-outlined">restaurant</span>
+        <h3>Zocolo</h3>
+        <p>A vibrant food and culture marketplace celebrating local flavors and traditions.</p>
+      </div>
+      <div class="place-tile">
+        <span class="material-symbols-outlined">local_hospital</span>
+        <h3>Healthcare</h3>
+        <p>Accessible health services and wellness programs for individuals and families.</p>
+      </div>
+      <div class="place-tile">
+        <span class="material-symbols-outlined">school</span>
+        <h3>Education Center</h3>
+        <p>Classes, mentoring, and resources empowering growth for every age and stage.</p>
+      </div>
+      <div class="place-tile">
+        <span class="material-symbols-outlined">park</span>
+        <h3>Green Spaces</h3>
+        <p>Parks, trails, and gathering lawns connecting people to nature and each other.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="inner">
+      <p class="script-callout">Everyone is welcome here!</p>
+      <h2>Be Part of Something Beautiful</h2>
+      <p>Whether you're a vendor, volunteer, or visitor—there's a place for you at Crossroads Commons.</p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-white">Inquire Today</a>
+        <a href="#" class="btn" style="background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5);">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-stripe">
+      <span style="background: var(--sky-blue)"></span>
+      <span style="background: var(--yellow)"></span>
+      <span style="background: var(--magenta)"></span>
+      <span style="background: var(--orange)"></span>
+      <span style="background: var(--white)"></span>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Logo-Horizontal-Monotone-White/CC-Logo-Horizontal-Monotone-White.svg" alt="Crossroads Commons">
+        <p>Where South OKC gathers, grows &amp; celebrates. A place shaped by the love of God.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#">About</a>
+        <a href="#">Media Coverage</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Contact / Inquire</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <div class="visit-location">
+          <span class="material-symbols-outlined">location_on</span>
+          <span>Get Directions</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Crossroads Commons. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
