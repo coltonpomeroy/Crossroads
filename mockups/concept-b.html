@@ -64,6 +64,47 @@
     }
     .nav-cta:hover { background: var(--magenta) !important; color: var(--white) !important; }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      padding: 12px;
+      overflow: visible;
+      position: relative;
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 3px; background: var(--purple);
+      border-radius: 2px; transition: all 0.3s;
+      position: absolute; left: 12px;
+    }
+    .hamburger span:nth-child(1) { top: 14px; }
+    .hamburger span:nth-child(2) { top: 22px; }
+    .hamburger span:nth-child(3) { top: 30px; }
+    .hamburger.open span:nth-child(1) { top: 22px; transform: rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 22px; transform: rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--purple); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none;
+      font-size: 24px; font-weight: 700; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--yellow); }
+    .mobile-menu .mobile-cta {
+      background: var(--white); color: var(--purple);
+      padding: 14px 36px; border-radius: 10px;
+      font-size: 18px; font-weight: 700; margin-top: 16px;
+    }
+
     /* ── HERO — full-width colorful split ── */
     .hero {
       margin-top: 72px;
@@ -336,6 +377,7 @@
     @media (max-width: 768px) {
       .nav { padding: 0 20px; }
       .nav-links { display: none; }
+      .hamburger { display: block; }
       .hero {
         grid-template-columns: 1fr;
         min-height: unset;
@@ -379,7 +421,16 @@
       <a href="#">Blog</a>
       <a href="#" class="nav-cta">Contact</a>
     </div>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.hamburger').classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open');">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu">
+    <a href="#">About</a>
+    <a href="#">Media</a>
+    <a href="#">Blog</a>
+    <a href="#" class="mobile-cta">Contact</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
