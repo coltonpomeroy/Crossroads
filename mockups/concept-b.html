@@ -336,10 +336,25 @@
     @media (max-width: 768px) {
       .nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { min-height: 300px; }
-      .hero-left { padding: 48px 24px; }
-      .hero-left h1 { font-size: 36px; }
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: unset;
+      }
+      .hero-left {
+        padding: 48px 32px 32px;
+      }
+      .hero-left::before { display: none; }
+      .hero-left h1 { font-size: 40px; }
+      .hero-right {
+        padding: 0 32px 32px;
+        background: var(--cream);
+      }
+      .hero-right img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 16px;
+      }
       .stats { padding: 32px 24px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .places { padding: 60px 24px; }
@@ -370,7 +385,7 @@
   <section class="hero">
     <div class="hero-left">
       <p class="label">Crossroads Commons</p>
-      <h1>Where Community <span>Comes Alive</span></h1>
+      <h1>Where Community<br><span>Comes Alive</span></h1>
       <p>A vibrant gathering place in South OKC where people, paths, and stories converge in a place shaped by the love of God.</p>
       <div class="hero-buttons">
         <a href="#" class="btn btn-magenta">
