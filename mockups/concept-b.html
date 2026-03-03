@@ -105,41 +105,91 @@
       font-size: 18px; font-weight: 700; margin-top: 16px;
     }
 
-    /* ── HERO — full-width colorful split ── */
+    /* ── HERO — full-width vision image ── */
     .hero {
       margin-top: 72px;
-      display: grid;
-      grid-template-columns: 5fr 7fr;
-      min-height: min(calc(100vh - 72px), 720px);
-    }
-    .hero-left {
-      background: var(--cream);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 64px;
       position: relative;
+      min-height: min(calc(100vh - 72px), 780px);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
     }
-    /* Decorative stripe on left edge */
-    .hero-left::before {
-      content: '';
+    .hero-bg {
       position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 8px;
-      background: linear-gradient(to bottom, var(--sky-blue), var(--yellow), var(--magenta), var(--orange));
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
     }
-    .hero-left .label {
-      font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--magenta); margin-bottom: 20px;
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
     }
-    .hero-left h1 {
-      font-size: 54px; font-weight: 800; line-height: 1.1;
-      color: var(--charcoal); margin-bottom: 24px;
+    /* Gradient overlay for text legibility */
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 2;
+      background:
+        linear-gradient(to right, rgba(76, 18, 65, 0.87) 0%, rgba(110, 30, 75, 0.65) 28%, rgba(76, 18, 65, 0.2) 58%, rgba(38, 31, 34, 0.06) 100%),
+        linear-gradient(to top, rgba(76, 18, 65, 0.45) 0%, transparent 35%);
     }
-    .hero-left h1 span { color: var(--magenta); text-decoration: underline; text-decoration-color: var(--yellow); text-underline-offset: 6px; text-decoration-thickness: 4px; }
-    .hero-left p {
-      font-size: 18px; color: var(--silver); line-height: 1.7;
-      max-width: 480px; margin-bottom: 40px;
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 0 80px 100px;
+      max-width: 720px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 24px;
+    }
+    .hero-badge .material-symbols-outlined {
+      font-size: 16px;
+    }
+    .hero-script {
+      font-family: 'Native Record Script', cursive;
+      font-size: 48px;
+      color: var(--yellow);
+      margin-bottom: 4px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+    .hero-content h1 {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 16px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .hero-content h1 .highlight {
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-underline-offset: 8px;
+      text-decoration-thickness: 5px;
+    }
+    .hero-content .tagline {
+      font-size: 22px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.5;
+      max-width: 580px;
+      margin-bottom: 36px;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.3);
     }
     .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn {
@@ -151,23 +201,9 @@
     }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
     .btn-magenta { background: var(--magenta); color: var(--white); }
+    .btn-outline-light { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+    .btn-outline-light:hover { background: rgba(255,255,255,0.1); }
     .btn-outline-dark { background: transparent; color: var(--charcoal); border: 2px solid var(--charcoal); }
-
-    .hero-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      background: #f3f1ec;
-      overflow: hidden;
-    }
-    .hero-right img {
-      width: 110%;
-      height: 110%;
-      object-fit: contain;
-      object-position: center center;
-      display: block;
-    }
 
     /* ── COLOR BAR ── */
     .color-bar {
@@ -211,7 +247,11 @@
     }
     .section-title {
       font-size: 42px; font-weight: 800; color: var(--charcoal); margin-bottom: 48px;
-      text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 8px; text-decoration-thickness: 4px;
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-underline-offset: 10px;
+      text-decoration-thickness: 4px;
+      text-decoration-skip-ink: none;
     }
     .places-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
@@ -286,6 +326,56 @@
       font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--charcoal);
     }
     .event-body p { font-size: 14px; color: var(--silver); line-height: 1.5; }
+
+    /* ── AS SEEN IN ── */
+    .as-seen-in {
+      background: var(--cream);
+      padding: 56px 48px;
+      text-align: center;
+    }
+    .as-seen-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 28px;
+    }
+    .logo-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      row-gap: 32px;
+    }
+    .logo-item {
+      text-decoration: none;
+      opacity: 0.45;
+      transition: opacity 0.2s;
+      display: flex;
+      align-items: center;
+      height: 32px;
+    }
+    .logo-item:hover {
+      opacity: 0.85;
+    }
+    .logo-item img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%);
+    }
+
+    /* ── LOGO CAROUSEL (mobile) ── */
+    @keyframes logo-scroll {
+      0%, 12%    { transform: translateX(0); }
+      16%, 28%   { transform: translateX(-100%); }
+      32%, 44%   { transform: translateX(-200%); }
+      48%, 60%   { transform: translateX(-300%); }
+      64%, 76%   { transform: translateX(-400%); }
+      80%, 92%   { transform: translateX(-500%); }
+      96%, 100%  { transform: translateX(0); }
+    }
 
     /* ── CTA BANNER ── */
     .cta-banner {
@@ -379,28 +469,32 @@
       .nav-links { display: none; }
       .hamburger { display: block; }
       .hero {
-        grid-template-columns: 1fr;
-        min-height: unset;
+        min-height: 520px;
       }
-      .hero-left {
-        padding: 48px 32px 32px;
+      .hero-content {
+        padding: 0 24px 48px;
       }
-      .hero-left::before { display: none; }
-      .hero-left h1 { font-size: 40px; }
-      .hero-right {
-        padding: 0 32px 32px;
-        background: var(--cream);
-      }
-      .hero-right img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        border-radius: 16px;
-      }
+      .hero-script { font-size: 32px; }
+      .hero-content h1 { font-size: 42px; }
+      .hero-content .tagline { font-size: 17px; }
       .stats { padding: 32px 24px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .places { padding: 60px 24px; }
       .places-grid { grid-template-columns: 1fr; }
+      .as-seen-in { padding: 36px 24px; overflow: hidden; }
+      .logo-strip {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 0;
+        animation: logo-scroll 18s infinite;
+      }
+      .logo-item {
+        min-width: 100%;
+        height: 28px;
+        justify-content: center;
+        opacity: 0.5;
+      }
       .events-inner { padding: 0 24px; }
       .cta-banner { padding: 60px 24px; }
       .script-callout { font-size: 32px !important; }
@@ -434,70 +528,69 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-left">
-      <p class="label">Crossroads Commons</p>
-      <h1>Where Community<br><span>Comes Alive</span></h1>
-      <p>A vibrant gathering place in South OKC where people, paths, and stories converge in a place shaped by the love of God.</p>
+    <div class="hero-bg">
+      <img src="images/hero-vision-day.png" alt="Architectural vision of Crossroads Commons — aerial watercolor rendering showing the reimagined campus">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-script">A place to flourish</p>
+      <h1>Crossroads<br><span class="highlight">Commons</span></h1>
+      <p class="tagline">Dedicating Crossroads Mall to the flourishing of children and families in Oklahoma City.</p>
       <div class="hero-buttons">
         <a href="#" class="btn btn-magenta">
           <span class="material-symbols-outlined" style="font-size:20px">explore</span>
-          Explore the Commons
+          Explore the Vision
         </a>
-        <a href="#" class="btn btn-outline-dark">
+        <a href="#" class="btn btn-outline-light">
           <span class="material-symbols-outlined" style="font-size:20px">mail</span>
           Get in Touch
         </a>
       </div>
-    </div>
-    <div class="hero-right">
-      <img src="images/family.png" alt="Happy family at Crossroads Commons">
     </div>
   </section>
 
   <!-- COLOR BAR -->
   <div class="color-bar"><div></div><div></div><div></div><div></div><div></div></div>
 
-  <!-- STATS -->
-  <section class="stats">
-    <div class="stats-grid">
-      <div>
-        <div class="stat-number c1">50+</div>
-        <p>Local Vendors</p>
-      </div>
-      <div>
-        <div class="stat-number c2">12</div>
-        <p>Community Programs</p>
-      </div>
-      <div>
-        <div class="stat-number c3">5K+</div>
-        <p>Monthly Visitors</p>
-      </div>
-      <div>
-        <div class="stat-number c4">365</div>
-        <p>Days of Welcome</p>
-      </div>
+  <!-- AS SEEN IN -->
+  <section class="as-seen-in">
+    <p class="as-seen-label">As Featured In</p>
+    <div class="logo-strip">
+      <a href="https://www.koco.com/article/oklahoma-city-crossroads-mall-set-for-transformation/66743864" target="_blank" rel="noopener" class="logo-item">
+        <img src="images/logos/koco-gray.png" alt="KOCO 5">
+      </a>
+      <a href="https://www.oklahoman.com/story/business/real-estate/2025/02/18/crossroads-mall-okc-new-owners-hobby-lobby-plans/78867587007/" target="_blank" rel="noopener" class="logo-item">
+        <img src="images/logos/oklahoman-gray.png" alt="The Oklahoman">
+      </a>
+      <a href="https://okcfox.com/news/local/crossroads-mall-to-become-resource-hub-for-okc-community" target="_blank" rel="noopener" class="logo-item">
+        <img src="images/logos/fox25-gray.png" alt="FOX 25">
+      </a>
+      <a href="https://www.kgou.org/health/2025-09-18/crossroads-mall-has-sat-largely-empty-for-years-a-new-nonprofit-wants-to-turn-it-into-a-community-hub" target="_blank" rel="noopener" class="logo-item">
+        <img src="images/logos/kgou-gray.png" alt="KGOU - Your NPR Source">
+      </a>
+      <a href="https://kfor.com/news/local/news-owners-and-plans-for-crossroads-mall/" target="_blank" rel="noopener" class="logo-item">
+        <img src="images/logos/kfor-wide.svg" alt="KFOR">
+      </a>
+      <a href="https://www.yahoo.com/news/crossroads-mall-owners-redevelopment-plans-114028906.html" target="_blank" rel="noopener" class="logo-item">
+        <img src="images/logos/yahoo-gray.png" alt="Yahoo News">
+      </a>
     </div>
   </section>
 
   <!-- PLACES -->
   <section class="places">
-    <p class="section-label">What's at Crossroads</p>
-    <h2 class="section-title">Discover Your Place</h2>
+    <p class="section-label">What We're Building</p>
+    <h2 class="section-title">Spaces to Flourish</h2>
     <div class="places-grid">
       <div class="place-tile">
-        <span class="material-symbols-outlined">groups</span>
-        <h3>Community Hall</h3>
-        <p>A welcoming space for workshops, events, and gatherings that bring neighbors together.</p>
-      </div>
-      <div class="place-tile">
-        <span class="material-symbols-outlined">sports_soccer</span>
-        <h3>Soccer Fields</h3>
-        <p>Open fields for youth leagues, family play, and community tournaments year-round.</p>
+        <span class="material-symbols-outlined">school</span>
+        <h3>Education</h3>
+        <p>Primary, secondary, and adult learning — empowering every generation with the tools to grow.</p>
       </div>
       <div class="place-tile">
         <span class="material-symbols-outlined">restaurant</span>
-        <h3>Zocolo</h3>
-        <p>A vibrant food and culture marketplace celebrating local flavors and traditions.</p>
+        <h3>Zocalo</h3>
+        <p>A vibrant food and culture marketplace celebrating local flavors, traditions, and community.</p>
       </div>
       <div class="place-tile">
         <span class="material-symbols-outlined">local_hospital</span>
@@ -505,14 +598,19 @@
         <p>Accessible health services and wellness programs for individuals and families.</p>
       </div>
       <div class="place-tile">
-        <span class="material-symbols-outlined">school</span>
-        <h3>Education Center</h3>
-        <p>Classes, mentoring, and resources empowering growth for every age and stage.</p>
-      </div>
-      <div class="place-tile">
         <span class="material-symbols-outlined">park</span>
         <h3>Green Spaces</h3>
         <p>Parks, trails, and gathering lawns connecting people to nature and each other.</p>
+      </div>
+      <div class="place-tile">
+        <span class="material-symbols-outlined">celebration</span>
+        <h3>Event Center</h3>
+        <p>A gathering place for concerts, community events, and celebrations that bring people together.</p>
+      </div>
+      <div class="place-tile">
+        <span class="material-symbols-outlined">palette</span>
+        <h3>The Arts</h3>
+        <p>Creative spaces for visual arts, performance, and cultural expression for all ages.</p>
       </div>
     </div>
   </section>
@@ -520,9 +618,9 @@
   <!-- CTA BANNER -->
   <section class="cta-banner">
     <div class="inner">
-      <p class="script-callout">Everyone is welcome here!</p>
-      <h2>Be Part of Something Beautiful</h2>
-      <p>Whether you're a vendor, volunteer, or visitor—there's a place for you at Crossroads Commons.</p>
+      <p class="script-callout">Be part of what's next</p>
+      <h2>Help Us Build Something Beautiful</h2>
+      <p>Crossroads Commons is taking shape — and there's a place for you in this story. Get involved as we reimagine South OKC together.</p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <a href="#" class="btn btn-white">Inquire Today</a>
         <a href="#" class="btn" style="background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5);">Learn More</a>
@@ -542,7 +640,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Logo-Horizontal-Monotone-White/CC-Logo-Horizontal-Monotone-White.svg" alt="Crossroads Commons">
-        <p>Where South OKC gathers, grows &amp; celebrates. A place shaped by the love of God.</p>
+        <p>Reimagining South OKC — a place shaped by the love of God for the flourishing of children and families.</p>
       </div>
       <div class="footer-col">
         <h4>Explore</h4>
