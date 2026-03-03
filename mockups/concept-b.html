@@ -362,6 +362,41 @@
       filter: grayscale(100%);
     }
 
+    /* ── VIDEO ── */
+    .video-section {
+      background: #EDE8F0;
+      padding: 100px 80px;
+    }
+    .video-frame {
+      max-width: 960px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+    }
+    .video-color-bar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: 6px;
+    }
+    .video-color-bar > span:nth-child(1) { background: var(--purple); }
+    .video-color-bar > span:nth-child(2) { background: var(--sky-blue); }
+    .video-color-bar > span:nth-child(3) { background: var(--magenta); }
+    .video-color-bar > span:nth-child(4) { background: var(--orange); }
+    .video-color-bar > span:nth-child(5) { background: var(--yellow); }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
     /* ── LOGO CAROUSEL (mobile) ── */
     @keyframes logo-scroll {
       0%, 12%    { transform: translateX(0); }
@@ -490,6 +525,7 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .places { padding: 60px 24px; }
       .places-grid { grid-template-columns: 1fr; }
+      .video-section { padding: 48px 24px; }
       .as-seen-in { padding: 36px 24px; overflow: hidden; }
       .logo-strip {
         display: flex;
@@ -582,6 +618,19 @@
       <a href="https://www.yahoo.com/news/crossroads-mall-owners-redevelopment-plans-114028906.html" target="_blank" rel="noopener" class="logo-item">
         <img src="images/logos/yahoo-gray.png" alt="Yahoo News">
       </a>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <p class="section-label">See the Vision</p>
+    <h2 class="section-title">A Place to Flourish</h2>
+    <div class="video-frame">
+      <div class="video-color-bar"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="video-wrapper">
+        <iframe src="https://drive.google.com/file/d/11PuvZluU0W5xBXda6ybpta3tGkuqARTd/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+      <div class="video-color-bar"><span></span><span></span><span></span><span></span><span></span></div>
     </div>
   </section>
 
