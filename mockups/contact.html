@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Crossroads Commons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Native Record Script';
+      src: url('../fonts/Demonativerecordscript-KVaw7.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #4C1241;
+      --sky-blue: #4794B5;
+      --magenta: #D43365;
+      --orange: #E66000;
+      --yellow: #F5A623;
+      --cream: #F5F4EE;
+      --charcoal: #261F22;
+      --silver: #8D8786;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: var(--white);
+      height: 72px;
+    }
+    .nav-logo { height: 36px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--charcoal); text-decoration: none;
+      font-size: 15px; font-weight: 600; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--magenta); }
+    .nav-links a.active { color: var(--magenta); }
+    .nav-cta {
+      background: var(--purple) !important; color: var(--white) !important;
+      padding: 10px 24px !important; border-radius: 10px !important;
+    }
+    .nav-cta:hover { background: var(--magenta) !important; color: var(--white) !important; }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      padding: 12px; overflow: visible; position: relative;
+      width: 48px; height: 48px; flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 3px; background: var(--purple);
+      border-radius: 2px; transition: all 0.3s;
+      position: absolute; left: 12px;
+    }
+    .hamburger span:nth-child(1) { top: 14px; }
+    .hamburger span:nth-child(2) { top: 22px; }
+    .hamburger span:nth-child(3) { top: 30px; }
+    .hamburger.open span:nth-child(1) { top: 22px; transform: rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 22px; transform: rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--purple); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none;
+      font-size: 24px; font-weight: 700; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--yellow); }
+    .mobile-menu .mobile-cta {
+      background: var(--white); color: var(--purple);
+      padding: 14px 36px; border-radius: 10px;
+      font-size: 18px; font-weight: 700; margin-top: 16px;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      margin-top: 72px;
+      background: linear-gradient(135deg, var(--purple) 0%, #6E1E4B 60%, var(--magenta) 100%);
+      padding: 100px 80px 80px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(71, 148, 181, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 50%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .page-hero .script-callout {
+      font-family: 'Native Record Script', cursive;
+      font-size: 48px; color: var(--yellow); margin-bottom: 8px;
+    }
+    .page-hero h1 {
+      font-size: 52px; font-weight: 800;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .page-hero .subtitle {
+      font-size: 20px; color: rgba(255,255,255,0.8);
+      line-height: 1.6; max-width: 600px; margin: 0 auto;
+    }
+
+    /* ── COLOR BAR ── */
+    .color-bar {
+      display: grid; grid-template-columns: repeat(5, 1fr); height: 8px;
+    }
+    .color-bar > div:nth-child(1) { background: var(--purple); }
+    .color-bar > div:nth-child(2) { background: var(--sky-blue); }
+    .color-bar > div:nth-child(3) { background: var(--magenta); }
+    .color-bar > div:nth-child(4) { background: var(--orange); }
+    .color-bar > div:nth-child(5) { background: var(--yellow); }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .section-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--magenta); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 32px; font-weight: 800; color: var(--charcoal); margin-bottom: 32px;
+    }
+    .contact-form {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .form-field label {
+      display: block; font-size: 13px; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%; padding: 12px 16px;
+      border: 2px solid #e0e0e0; border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; outline: none; transition: border-color 0.2s;
+      background: var(--white);
+    }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      border-color: var(--magenta);
+    }
+    .form-field textarea { resize: vertical; min-height: 120px; }
+    .btn-magenta {
+      background: var(--magenta); color: var(--white);
+      padding: 14px 36px; border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 700;
+      border: none; cursor: pointer; transition: all 0.2s;
+      align-self: flex-start;
+    }
+    .btn-magenta:hover {
+      background: var(--purple);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .contact-info-card {
+      background: var(--cream); border-radius: 16px; padding: 36px;
+      margin-bottom: 24px;
+    }
+    .contact-info-card h3 {
+      font-size: 20px; font-weight: 800; margin-bottom: 24px;
+    }
+    .contact-info-item {
+      display: flex; gap: 16px; margin-bottom: 20px;
+    }
+    .contact-info-item:last-child { margin-bottom: 0; }
+    .contact-info-item .material-symbols-outlined {
+      font-size: 24px; color: var(--magenta); flex-shrink: 0; margin-top: 2px;
+    }
+    .contact-info-item strong {
+      display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px;
+    }
+    .contact-info-item p {
+      font-size: 14px; color: var(--silver); line-height: 1.5; margin: 0;
+    }
+    .contact-info-item a {
+      color: var(--magenta); text-decoration: none;
+    }
+    .contact-info-item a:hover { text-decoration: underline; }
+
+    .contact-social h4 {
+      font-size: 14px; font-weight: 700; margin-bottom: 12px;
+    }
+    .contact-social-links {
+      display: flex; gap: 12px;
+    }
+    .contact-social-link {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px; background: var(--cream);
+      color: var(--charcoal); text-decoration: none;
+      transition: all 0.2s;
+    }
+    .contact-social-link:hover {
+      background: var(--magenta); color: var(--white);
+    }
+
+    /* ── BTN ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-white { background: var(--white); color: var(--magenta); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      position: relative; padding: 100px 80px; overflow: hidden;
+      background: linear-gradient(135deg, var(--magenta) 0%, var(--orange) 100%);
+      text-align: center;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(76, 18, 65, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(245, 166, 35, 0.15) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-banner .inner { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+    .cta-banner .script-callout {
+      font-family: 'Native Record Script', cursive;
+      font-size: 72px; color: var(--yellow); margin-bottom: 8px;
+    }
+    .cta-banner h2 {
+      font-size: 44px; font-weight: 800; color: var(--white);
+      margin-bottom: 20px; line-height: 1.15;
+    }
+    .cta-banner p {
+      font-size: 18px; color: rgba(255,255,255,0.85);
+      margin-bottom: 36px; line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--purple); color: var(--white);
+      padding: 0 80px 32px;
+    }
+    .footer-stripe { display: flex; height: 4px; }
+    .footer-stripe span { flex: 1; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; max-width: 1200px; margin: 0 auto 48px; padding-top: 48px;
+    }
+    .footer-brand img { height: 36px; margin-bottom: 12px; }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 14px; max-width: 300px; line-height: 1.6; }
+    .footer-col h4 {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 16px; color: var(--yellow);
+    }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 14px; margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-col p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.6; }
+    .footer-col .visit-location {
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.55); font-size: 14px; margin-top: 4px;
+    }
+    .footer-col .visit-location .material-symbols-outlined {
+      font-size: 20px; color: var(--yellow);
+    }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center; font-size: 13px; color: rgba(255,255,255,0.35);
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .page-hero { padding: 60px 24px 48px; }
+      .page-hero .script-callout { font-size: 32px; }
+      .page-hero h1 { font-size: 36px; }
+      .page-hero .subtitle { font-size: 17px; }
+      .contact-section { padding: 48px 24px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .cta-banner { padding: 60px 24px; }
+      .cta-banner .script-callout { font-size: 32px; }
+      .footer { padding: 48px 24px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="concept-b.html"><img src="../CrossRoads-BrandPackage/Logo Package/Color Versions/CC-Logo-Horizontal-Color-ForOnLightBG/CC-Logo-Horizontal-Color-ForOnLightBG.svg" alt="Crossroads Commons" class="nav-logo"></a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="media.html">Media</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="nav-cta active">Contact</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.hamburger').classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open');">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="about.html">About</a>
+    <a href="media.html">Media</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html" class="mobile-cta">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <p class="script-callout">Get in Touch</p>
+      <h1>Contact Us</h1>
+      <p class="subtitle">Have questions or want to get involved? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- COLOR BAR -->
+  <div class="color-bar"><div></div><div></div><div></div><div></div><div></div></div>
+
+  <!-- CONTACT CONTENT -->
+  <section class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-form-col">
+        <p class="section-label">Send a Message</p>
+        <h2 class="section-title">We'd Love to Hear From You</h2>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('This is a mockup — form submission is not active.');">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" placeholder="Jane">
+            </div>
+            <div class="form-field">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" placeholder="Doe">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="jane@example.com">
+          </div>
+          <div class="form-field">
+            <label for="interest">I'm interested in...</label>
+            <select id="interest">
+              <option value="">Select one</option>
+              <option>Volunteering</option>
+              <option>Donating</option>
+              <option>Leasing space</option>
+              <option>Partnership opportunities</option>
+              <option>General inquiry</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us how you'd like to get involved..."></textarea>
+          </div>
+          <button type="submit" class="btn-magenta">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-info-col">
+        <div class="contact-info-card">
+          <h3>Contact Information</h3>
+          <div class="contact-info-item">
+            <span class="material-symbols-outlined">mail</span>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:info@crossroadscommons.com">info@crossroadscommons.com</a></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <span class="material-symbols-outlined">location_on</span>
+            <div>
+              <strong>Address</strong>
+              <p>Crossroads Mall<br>7000 Crossroads Blvd<br>Oklahoma City, OK 73149</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <span class="material-symbols-outlined">schedule</span>
+            <div>
+              <strong>Office Hours</strong>
+              <p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-social">
+          <h4>Follow Us</h4>
+          <div class="contact-social-links">
+            <a href="#" class="contact-social-link" aria-label="Instagram">
+              <span class="material-symbols-outlined">photo_camera</span>
+            </a>
+            <a href="#" class="contact-social-link" aria-label="Facebook">
+              <span class="material-symbols-outlined">group</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="inner">
+      <p class="script-callout">Be part of what's next</p>
+      <h2>Help Us Build Something Beautiful</h2>
+      <p>Crossroads Commons is taking shape — and there's a place for you in this story. Get involved as we reimagine South OKC together.</p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="contact.html" class="btn btn-white">Inquire Today</a>
+        <a href="about.html" class="btn" style="background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5);">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-stripe">
+      <span style="background: var(--sky-blue)"></span>
+      <span style="background: var(--yellow)"></span>
+      <span style="background: var(--magenta)"></span>
+      <span style="background: var(--orange)"></span>
+      <span style="background: var(--white)"></span>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Logo-Horizontal-Monotone-White/CC-Logo-Horizontal-Monotone-White.svg" alt="Crossroads Commons">
+        <p>Reimagining South OKC — a place shaped by the love of God for the flourishing of children and families.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="about.html">About</a>
+        <a href="media.html">Media Coverage</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="contact.html">Contact / Inquire</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <div class="visit-location">
+          <span class="material-symbols-outlined">location_on</span>
+          <span>Get Directions</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Crossroads Commons. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
