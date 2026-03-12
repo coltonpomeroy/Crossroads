@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Crossroads Commons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Native Record Script';
+      src: url('../fonts/Demonativerecordscript-KVaw7.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #4C1241;
+      --sky-blue: #4794B5;
+      --magenta: #D43365;
+      --orange: #E66000;
+      --yellow: #F5A623;
+      --cream: #F5F4EE;
+      --charcoal: #261F22;
+      --silver: #8D8786;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: var(--white);
+      height: 72px;
+    }
+    .nav-logo { height: 36px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--charcoal); text-decoration: none;
+      font-size: 15px; font-weight: 600; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--magenta); }
+    .nav-links a.active { color: var(--magenta); }
+    .nav-cta {
+      background: var(--purple) !important; color: var(--white) !important;
+      padding: 10px 24px !important; border-radius: 10px !important;
+    }
+    .nav-cta:hover { background: var(--magenta) !important; color: var(--white) !important; }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      padding: 12px;
+      overflow: visible;
+      position: relative;
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 3px; background: var(--purple);
+      border-radius: 2px; transition: all 0.3s;
+      position: absolute; left: 12px;
+    }
+    .hamburger span:nth-child(1) { top: 14px; }
+    .hamburger span:nth-child(2) { top: 22px; }
+    .hamburger span:nth-child(3) { top: 30px; }
+    .hamburger.open span:nth-child(1) { top: 22px; transform: rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 22px; transform: rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--purple); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none;
+      font-size: 24px; font-weight: 700; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--yellow); }
+    .mobile-menu .mobile-cta {
+      background: var(--white); color: var(--purple);
+      padding: 14px 36px; border-radius: 10px;
+      font-size: 18px; font-weight: 700; margin-top: 16px;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      margin-top: 72px;
+      background: linear-gradient(135deg, var(--purple) 0%, #6E1E4B 60%, var(--magenta) 100%);
+      padding: 100px 80px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(71, 148, 181, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 50%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .page-hero .script-callout {
+      font-family: 'Native Record Script', cursive;
+      font-size: 48px;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+    .page-hero h1 {
+      font-size: 52px; font-weight: 800;
+      color: var(--white); line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .page-hero .subtitle {
+      font-size: 20px; font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 600px; margin: 0 auto;
+    }
+
+    /* ── COLOR BAR ── */
+    .color-bar {
+      display: grid; grid-template-columns: repeat(5, 1fr); height: 8px;
+    }
+    .color-bar > div:nth-child(1) { background: var(--purple); }
+    .color-bar > div:nth-child(2) { background: var(--sky-blue); }
+    .color-bar > div:nth-child(3) { background: var(--magenta); }
+    .color-bar > div:nth-child(4) { background: var(--orange); }
+    .color-bar > div:nth-child(5) { background: var(--yellow); }
+
+    /* ── STORY SECTION ── */
+    .story {
+      padding: 100px 80px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .story p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+    }
+    .story p.highlight-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--purple);
+      margin-top: 40px;
+      margin-bottom: 8px;
+    }
+    .story p.welcome {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--magenta);
+      font-style: italic;
+    }
+
+    /* ── MISSION / VISION ── */
+    .mission-vision {
+      background: var(--cream);
+      padding: 100px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mv-swoops {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      transform: translateY(-5%);
+    }
+    .mission-vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .mv-card {
+      padding: 48px;
+      border-radius: 20px;
+      background: var(--white);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .mv-card .section-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--magenta); margin-bottom: 12px;
+    }
+    .mv-card h3 {
+      font-size: 28px; font-weight: 800;
+      color: var(--charcoal); margin-bottom: 16px;
+    }
+    .mv-card p {
+      font-size: 16px; line-height: 1.7;
+      color: var(--charcoal); opacity: 0.8;
+    }
+    .mv-card .accent-bar {
+      width: 48px; height: 4px; border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* ── BOARD ── */
+    .board {
+      padding: 100px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .board .section-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--magenta); margin-bottom: 12px;
+    }
+    .board .section-title {
+      font-size: 42px; font-weight: 800; color: var(--charcoal); margin-bottom: 48px;
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-underline-offset: 10px;
+      text-decoration-thickness: 4px;
+      text-decoration-skip-ink: none;
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
+    .board-member {
+      text-align: center;
+    }
+    .board-member .avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-blue), var(--purple));
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .board-member .avatar .material-symbols-outlined {
+      font-size: 48px; color: rgba(255,255,255,0.6);
+    }
+    .board-member .avatar img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .board-member h4 {
+      font-size: 16px; font-weight: 700; color: var(--charcoal); margin-bottom: 4px;
+    }
+    .board-member p {
+      font-size: 14px; color: var(--silver);
+    }
+
+    /* ── FAQ ── */
+    .faq {
+      background: var(--cream);
+      padding: 100px 80px;
+    }
+    .faq-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .faq .section-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--magenta); margin-bottom: 12px;
+      text-align: center;
+    }
+    .faq .section-title {
+      font-size: 42px; font-weight: 800; color: var(--charcoal); margin-bottom: 48px;
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-underline-offset: 10px;
+      text-decoration-thickness: 4px;
+      text-decoration-skip-ink: none;
+    }
+    .faq-item {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .faq-item:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-question h4 {
+      font-size: 17px; font-weight: 700;
+      color: var(--charcoal);
+    }
+    .faq-question .material-symbols-outlined {
+      font-size: 24px;
+      color: var(--magenta);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-question .material-symbols-outlined {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-top: 16px;
+    }
+    .faq-answer p {
+      font-size: 15px; line-height: 1.7;
+      color: var(--charcoal); opacity: 0.75;
+    }
+    .faq-answer a {
+      color: var(--magenta);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      position: relative; padding: 100px 80px; overflow: hidden;
+      background: linear-gradient(135deg, var(--magenta) 0%, var(--orange) 100%);
+      text-align: center;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(76, 18, 65, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(245, 166, 35, 0.15) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-banner .inner { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+    .cta-banner .script-callout {
+      font-family: 'Native Record Script', cursive;
+      font-size: 72px;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+    .cta-banner h2 {
+      font-size: 44px; font-weight: 800; color: var(--white);
+      margin-bottom: 20px; line-height: 1.15;
+    }
+    .cta-banner p {
+      font-size: 18px; color: rgba(255,255,255,0.85);
+      margin-bottom: 36px; line-height: 1.6;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-white { background: var(--white); color: var(--magenta); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--purple); color: var(--white);
+      padding: 0 80px 32px;
+    }
+    .footer-stripe { display: flex; height: 4px; }
+    .footer-stripe span { flex: 1; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      max-width: 1200px; margin: 0 auto 48px;
+      padding-top: 48px;
+    }
+    .footer-brand img { height: 36px; margin-bottom: 12px; }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 14px; max-width: 300px; line-height: 1.6; }
+    .footer-col h4 {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 16px; color: var(--yellow);
+    }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 14px; margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-col p {
+      color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.6;
+    }
+    .footer-col .visit-location {
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.55); font-size: 14px; margin-top: 4px;
+    }
+    .footer-col .visit-location .material-symbols-outlined {
+      font-size: 20px; color: var(--yellow);
+    }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center; font-size: 13px; color: rgba(255,255,255,0.35);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .page-hero { padding: 60px 24px 48px; }
+      .page-hero .script-callout { font-size: 32px; }
+      .page-hero h1 { font-size: 36px; }
+      .page-hero .subtitle { font-size: 17px; }
+      .story { padding: 60px 24px; }
+      .story p { font-size: 16px; }
+      .mission-vision { padding: 60px 24px; }
+      .mission-vision-grid { grid-template-columns: 1fr; gap: 24px; }
+      .mv-card { padding: 32px 24px; }
+      .board { padding: 60px 24px; }
+      .board .section-title { font-size: 32px; }
+      .board-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .faq { padding: 60px 24px; }
+      .faq .section-title { font-size: 32px; }
+      .cta-banner { padding: 60px 24px; }
+      .cta-banner .script-callout { font-size: 32px; }
+      .footer { padding: 48px 24px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="concept-b.html">
+      <img src="../CrossRoads-BrandPackage/Logo Package/Color Versions/CC-Logo-Horizontal-Color-ForOnLightBG/CC-Logo-Horizontal-Color-ForOnLightBG.svg" alt="Crossroads Commons" class="nav-logo">
+    </a>
+    <div class="nav-links">
+      <a href="about.html" class="active">About</a>
+      <a href="#">Media</a>
+      <a href="#">Blog</a>
+      <a href="#" class="nav-cta">Contact</a>
+    </div>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.hamburger').classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open');">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="about.html">About</a>
+    <a href="#">Media</a>
+    <a href="#">Blog</a>
+    <a href="#" class="mobile-cta">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <p class="script-callout">Our Story</p>
+      <h1>About Crossroads Commons</h1>
+      <p class="subtitle">A place shaped by love for the flourishing of children and families in Oklahoma City.</p>
+    </div>
+  </section>
+
+  <!-- COLOR BAR -->
+  <div class="color-bar"><div></div><div></div><div></div><div></div><div></div></div>
+
+  <!-- STORY -->
+  <section class="story">
+    <p>In the winter of 2023, key leaders in the community gathered in the empty Crossroads Mall to ask a simple question: Could this space be dedicated to the flourishing of children in Oklahoma City?</p>
+
+    <p>We shared a collective concern for the challenges facing children in Oklahoma and felt a deep responsibility to help address them. The mall was for sale, and already 4,000 students attended school on the property each day. What if we added more schools&mdash;and filled the remaining 1.2 million square feet with the services, resources, and stores that families need to thrive? What if we made it beautiful?</p>
+
+    <p>The people in that meeting believed the idea was worth exploring. A few months later, a nonprofit called Crossroads Renewal Project was born. Generous donors stepped forward to make the vision possible, providing the funds for CRP to acquire the property. We began working with architects and engineers and welcoming our first tenants.</p>
+
+    <p class="highlight-name">Today, the property is called Crossroads Commons.</p>
+
+    <p>Crossroads Commons is a place for everyone. Our goal is not only to bless the students who attend school on site, but to be a signpost of hope for all children in Oklahoma&mdash;a place that communicates clearly that they are cared for, loved, and seen.</p>
+
+    <p class="welcome">All children and families are welcome here.</p>
+
+    <p>We are currently seeking additional tenants and donors to partner with us in the restoration, renovation, and beautification of the property. Over time, lease income will support the long-term sustainability of this work.</p>
+
+    <p>We plan to open the first several thousand square feet of healthcare space in the winter of 2026. Follow our blog or newspaper for updates as the story continues.</p>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="mission-vision">
+    <svg class="mv-swoops" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-100 600 C200 500, 400 480, 620 540 C840 600, 1040 520, 1540 280" stroke="#E66000" stroke-width="28" stroke-linecap="round"/>
+      <path d="M-100 650 C200 550, 400 530, 620 590 C840 650, 1040 570, 1540 330" stroke="#D43365" stroke-width="28" stroke-linecap="round"/>
+      <path d="M-100 700 C200 600, 400 580, 620 640 C840 700, 1040 620, 1540 380" stroke="#F5A623" stroke-width="28" stroke-linecap="round"/>
+      <path d="M-100 750 C200 650, 400 630, 620 690 C840 750, 1040 670, 1540 430" stroke="#4794B5" stroke-width="28" stroke-linecap="round"/>
+    </svg>
+    <div class="mission-vision-grid">
+      <div class="mv-card">
+        <div class="accent-bar" style="background: var(--magenta);"></div>
+        <p class="section-label">Our Mission</p>
+        <h3>Why We Exist</h3>
+        <p>Crossroads Renewal Project exists to bless the children and families of Oklahoma City by hosting in one beautiful location quality schools, businesses, and services that work alongside one another for a flourishing community.</p>
+      </div>
+      <div class="mv-card">
+        <div class="accent-bar" style="background: var(--sky-blue);"></div>
+        <p class="section-label">Our Vision</p>
+        <h3>What We See</h3>
+        <p>Crossroads Renewal Project seeks to create a haven of beauty that draws members from within the community and from afar to work, rest, create, and find access to needed resources.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOARD -->
+  <section class="board">
+    <p class="section-label">Leadership</p>
+    <h2 class="section-title">Our Board</h2>
+    <div class="board-grid">
+      <div class="board-member">
+        <div class="avatar">
+          <img src="images/board/chris-brewster.png" alt="Chris Brewster">
+        </div>
+        <h4>Chris Brewster</h4>
+      </div>
+      <div class="board-member">
+        <div class="avatar">
+          <img src="images/board/everado-borunda.jpg" alt="Everado Borunda" style="object-position: center 20%;">
+        </div>
+        <h4>Everado Borunda</h4>
+      </div>
+      <div class="board-member">
+        <div class="avatar">
+          <img src="images/board/tyler-green.jpg" alt="Tyler Green" style="object-position: center 5%;">
+        </div>
+        <h4>Tyler Green</h4>
+      </div>
+      <div class="board-member">
+        <div class="avatar">
+          <img src="images/board/reid-hebert.jpg" alt="Reid Hebert">
+        </div>
+        <h4>Reid Hebert</h4>
+      </div>
+      <div class="board-member">
+        <div class="avatar">
+          <img src="images/board/blair-humphreys.jpg" alt="Blair Humphreys">
+        </div>
+        <h4>Blair Humphreys</h4>
+      </div>
+      <div class="board-member">
+        <div class="avatar">
+          <img src="images/board/kim-swyden.jpeg" alt="Kim Swyden">
+        </div>
+        <h4>Kim Swyden</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="faq-inner">
+      <p class="section-label">Common Questions</p>
+      <h2 class="section-title">FAQ</h2>
+
+      <div class="faq-item open">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4>Is Crossroads Renewal Project / Crossroads Commons a religious nonprofit?</h4>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          <p>We are a Christian nonprofit deeply convicted by Christ's love for all children.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4>Do tenants have to be Christians or Christian organizations?</h4>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          <p>No.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4>How can I find more information about leasing space?</h4>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          <p>Fill out an inquiry here, or reach out to our development team at <a href="mailto:David@crossroadscommons.com">David@crossroadscommons.com</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4>How long will it take to develop the space?</h4>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          <p>We plan to develop in several phases, beginning with the former JCPenney and three key spaces with easy exits, and working our way into the interior of the concourse as the funds and right tenants materialize.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4>How are you raising funds?</h4>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          <p>We have raised funds through a combination of grants and private donors.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4>How will you be sustained long term?</h4>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          <p>While there is an initial philanthropic investment, long term we will be sustained entirely by lease income.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="inner">
+      <p class="script-callout">Be part of what's next</p>
+      <h2>Help Us Build Something Beautiful</h2>
+      <p>Crossroads Commons is taking shape — and there's a place for you in this story. Get involved as we reimagine South OKC together.</p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-white">Inquire Today</a>
+        <a href="#" class="btn" style="background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5);">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-stripe">
+      <span style="background: var(--sky-blue)"></span>
+      <span style="background: var(--yellow)"></span>
+      <span style="background: var(--magenta)"></span>
+      <span style="background: var(--orange)"></span>
+      <span style="background: var(--white)"></span>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../CrossRoads-BrandPackage/Logo Package/Monotone Versions/CC-Logo-Horizontal-Monotone-White/CC-Logo-Horizontal-Monotone-White.svg" alt="Crossroads Commons">
+        <p>Reimagining South OKC — a place shaped by the love of God for the flourishing of children and families.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="about.html">About</a>
+        <a href="#">Media Coverage</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Contact / Inquire</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <div class="visit-location">
+          <span class="material-symbols-outlined">location_on</span>
+          <span>Get Directions</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Crossroads Commons. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
