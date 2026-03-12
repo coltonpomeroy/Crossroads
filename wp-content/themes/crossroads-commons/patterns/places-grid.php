@@ -13,12 +13,12 @@
     <div class="place-tile">
       <span class="material-symbols-outlined">school</span>
       <h3>Education &amp; Childcare</h3>
-      <p>Primary, secondary, and adult learning alongside quality childcare — empowering every generation with the tools to grow.</p>
+      <p>Quality childcare, K-12 schooling, and adult learning that empowers every generation with the tools to grow.</p>
     </div>
     <div class="place-tile">
       <span class="material-symbols-outlined">volunteer_activism</span>
       <h3>Nonprofits &amp; Services</h3>
-      <p>A home for organizations that strengthen families — from a pregnancy center and food pantry to afterschool programs and more.</p>
+      <p>Pregnancy care, a community food pantry, afterschool programs, and other organizations dedicated to meeting real needs.</p>
     </div>
     <div class="place-tile">
       <span class="material-symbols-outlined">local_hospital</span>
@@ -28,7 +28,7 @@
     <div class="place-tile">
       <span class="material-symbols-outlined">lunch_dining</span>
       <h3>Eat &amp; Play</h3>
-      <p>A vibrant food marketplace and imaginative play spaces where families can share a meal, and children can climb, imagine, and explore.</p>
+      <p>A lively food hall celebrating local flavors alongside indoor play spaces where kids can climb, imagine, and explore.</p>
     </div>
     <div class="place-tile">
       <span class="material-symbols-outlined">celebration</span>
