@@ -1,0 +1,24 @@
+name: Deploy Theme to DreamHost
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wp-content/themes/crossroads-commons/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.DREAMHOST_SERVER }}
+          username: ${{ secrets.DREAMHOST_USERNAME }}
+          password: ${{ secrets.DREAMHOST_PASSWORD }}
+          local_path: ./wp-content/themes/crossroads-commons/.
+          remote_path: ${{ secrets.DREAMHOST_THEME_PATH }}
+          sftp_only: true
