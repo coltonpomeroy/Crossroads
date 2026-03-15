@@ -2,7 +2,7 @@ name: Deploy Theme to DreamHost
 
 on:
   push:
-    branches: [main]
+    branches: [main, staging]
     paths:
       - 'wp-content/themes/crossroads-commons/**'
   workflow_dispatch:
@@ -13,12 +13,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy via SFTP
+      - name: Set deploy target
+        id: target
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "remote_path=${{ secrets.DREAMHOST_THEME_PATH }}" >> "$GITHUB_OUTPUT"
+            echo "environment=production" >> "$GITHUB_OUTPUT"
+          else
+            echo "remote_path=${{ secrets.DREAMHOST_STAGING_THEME_PATH }}" >> "$GITHUB_OUTPUT"
+            echo "environment=staging" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy via SFTP (${{ steps.target.outputs.environment }})
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.DREAMHOST_SERVER }}
           username: ${{ secrets.DREAMHOST_USERNAME }}
-          password: ${{ secrets.DREAMHOST_PASSWORD }}
+          ssh_private_key: ${{ secrets.DREAMHOST_SSH_KEY }}
           local_path: ./wp-content/themes/crossroads-commons/.
-          remote_path: ${{ secrets.DREAMHOST_THEME_PATH }}
+          remote_path: ${{ steps.target.outputs.remote_path }}
           sftp_only: true
