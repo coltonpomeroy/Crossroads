@@ -37,8 +37,6 @@ main.wp-block-group > *,
 .faq, .as-seen-in, .media-section, .contact-section, .story,
 .mission-vision, .faq-inner, .inner, .media-inner,
 .page-hero-content) > * {
-  margin-block-start: 0 !important;
-  margin-block-end: 0 !important;
   max-width: none !important;
   margin-left: unset !important;
   margin-right: unset !important;
