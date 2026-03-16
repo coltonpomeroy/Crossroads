@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "palette": [
+        { "slug": "purple", "color": "#4C1241", "name": "Purple" },
+        { "slug": "sky-blue", "color": "#4794B5", "name": "Sky Blue" },
+        { "slug": "magenta", "color": "#D43365", "name": "Magenta" },
+        { "slug": "orange", "color": "#E66000", "name": "Orange" },
+        { "slug": "yellow", "color": "#F5A623", "name": "Yellow" },
+        { "slug": "cream", "color": "#F5F4EE", "name": "Cream" },
+        { "slug": "charcoal", "color": "#261F22", "name": "Charcoal" },
+        { "slug": "silver", "color": "#8D8786", "name": "Silver" },
+        { "slug": "white", "color": "#FFFFFF", "name": "White" }
+      ],
+      "gradients": [
+        {
+          "slug": "magenta-orange",
+          "gradient": "linear-gradient(135deg, #D43365 0%, #E66000 100%)",
+          "name": "Magenta to Orange"
+        },
+        {
+          "slug": "purple-magenta",
+          "gradient": "linear-gradient(135deg, #4C1241 0%, #6E1E4B 60%, #D43365 100%)",
+          "name": "Purple to Magenta"
+        }
+      ]
+    },
+    "typography": {
+      "defaultFontSizes": false,
+      "fontFamilies": [
+        {
+          "fontFamily": "'Plus Jakarta Sans', sans-serif",
+          "slug": "plus-jakarta-sans",
+          "name": "Plus Jakarta Sans",
+          "fontFace": [
+            {
+              "fontFamily": "Plus Jakarta Sans",
+              "fontWeight": "400 800",
+              "fontStyle": "normal",
+              "src": ["https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"]
+            }
+          ]
+        },
+        {
+          "fontFamily": "'Native Record Script', cursive",
+          "slug": "native-record-script",
+          "name": "Native Record Script",
+          "fontFace": [
+            {
+              "fontFamily": "Native Record Script",
+              "fontWeight": "400",
+              "fontStyle": "normal",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/Demonativerecordscript-KVaw7.otf"]
+            }
+          ]
+        }
+      ],
+      "fontSizes": [
+        { "slug": "small", "size": "13px", "name": "Small" },
+        { "slug": "medium", "size": "15px", "name": "Medium" },
+        { "slug": "regular", "size": "18px", "name": "Regular" },
+        { "slug": "large", "size": "28px", "name": "Large" },
+        { "slug": "x-large", "size": "42px", "name": "Extra Large" },
+        { "slug": "xx-large", "size": "52px", "name": "2X Large" },
+        { "slug": "hero", "size": "60px", "name": "Hero" }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "rem", "%", "vh", "vw"]
+    },
+    "layout": {
+      "contentSize": "820px",
+      "wideSize": "1280px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--white)",
+      "text": "var(--wp--preset--color--charcoal)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--plus-jakarta-sans)",
+      "fontSize": "16px",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--magenta)"
+        }
+      },
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--plus-jakarta-sans)",
+          "fontWeight": "800"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--charcoal)"
+        }
+      }
+    }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ]
+}

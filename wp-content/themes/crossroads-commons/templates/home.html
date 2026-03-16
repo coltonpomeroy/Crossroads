@@ -1,0 +1,87 @@
+<!-- wp:template-part {"slug":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+<main class="wp-block-group">
+  <!-- wp:pattern {"slug":"crossroads-commons/blog-hero"} /-->
+  <!-- wp:pattern {"slug":"crossroads-commons/color-bar"} /-->
+
+  <!-- wp:html -->
+  <section class="blog-section">
+    <div class="blog-inner">
+  <!-- /wp:html -->
+
+  <!-- wp:query {"queryId":1,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date"},"layout":{"type":"default"}} -->
+    <!-- wp:post-template -->
+      <!-- wp:html -->
+      <article class="blog-featured">
+      <!-- /wp:html -->
+
+      <!-- wp:post-featured-image {"isLink":true,"className":"blog-featured-image"} /-->
+
+      <!-- wp:html -->
+      <div class="blog-featured-content">
+      <!-- /wp:html -->
+
+      <!-- wp:post-date {"className":"blog-post-date","format":"M j, Y"} /-->
+      <!-- wp:post-title {"level":2,"isLink":true,"className":"blog-post-title"} /-->
+      <!-- wp:post-excerpt {"moreText":"Read More →","className":"blog-post-excerpt"} /-->
+
+      <!-- wp:html -->
+      </div>
+      </article>
+      <!-- /wp:html -->
+    <!-- /wp:post-template -->
+    <!-- wp:query-no-results -->
+      <!-- wp:paragraph {"className":"blog-no-results"} -->
+      <p class="blog-no-results">No posts yet — check back soon for stories and updates!</p>
+      <!-- /wp:paragraph -->
+    <!-- /wp:query-no-results -->
+  <!-- /wp:query -->
+
+  <!-- wp:query {"queryId":2,"query":{"perPage":6,"pages":0,"offset":1,"postType":"post","order":"desc","orderBy":"date"},"layout":{"type":"default"}} -->
+    <!-- wp:html -->
+    <div class="blog-grid">
+    <!-- /wp:html -->
+
+    <!-- wp:post-template {"className":"blog-grid-inner"} -->
+      <!-- wp:html -->
+      <article class="blog-card">
+      <!-- /wp:html -->
+
+      <!-- wp:post-featured-image {"isLink":true,"className":"blog-card-image"} /-->
+
+      <!-- wp:html -->
+      <div class="blog-card-content">
+      <!-- /wp:html -->
+
+      <!-- wp:post-date {"className":"blog-post-date","format":"M j, Y"} /-->
+      <!-- wp:post-title {"level":3,"isLink":true,"className":"blog-post-title"} /-->
+      <!-- wp:post-excerpt {"moreText":"Read More →","excerptLength":20,"className":"blog-post-excerpt"} /-->
+
+      <!-- wp:html -->
+      </div>
+      </article>
+      <!-- /wp:html -->
+    <!-- /wp:post-template -->
+
+    <!-- wp:html -->
+    </div>
+    <!-- /wp:html -->
+
+    <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+      <!-- wp:query-pagination-previous /-->
+      <!-- wp:query-pagination-numbers /-->
+      <!-- wp:query-pagination-next /-->
+    <!-- /wp:query-pagination -->
+  <!-- /wp:query -->
+
+  <!-- wp:html -->
+    </div>
+  </section>
+  <!-- /wp:html -->
+
+  <!-- wp:pattern {"slug":"crossroads-commons/cta-banner"} /-->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer"} /-->
