@@ -109,11 +109,12 @@ add_filter( 'render_block', 'crossroads_commons_render_shortcodes_in_html', 10, 
  * One-time migration: render pattern content into pages so they are editable
  * in the standard block editor instead of being locked in templates.
  *
- * Runs once on admin_init, then sets an option flag so it never runs again.
- * Only populates pages that have empty post_content (won't overwrite edits).
+ * v2: Re-renders patterns as native WordPress blocks (wp:cover, wp:group,
+ * wp:heading, wp:paragraph) so the editor shows visual, editable content
+ * instead of raw HTML code blocks.
  */
 function crossroads_commons_migrate_pattern_content() {
-    if ( get_option( 'crossroads_content_migrated_v1' ) ) {
+    if ( get_option( 'crossroads_content_migrated_v2' ) ) {
         return;
     }
 
@@ -139,11 +140,6 @@ function crossroads_commons_migrate_pattern_content() {
 
     foreach ( $pages as $slug => $config ) {
         $page = get_page_by_path( $slug );
-
-        // Skip pages that already have content (don't overwrite edits).
-        if ( $page && ! empty( trim( $page->post_content ) ) ) {
-            continue;
-        }
 
         // Render each pattern file in order.
         $content = '';
@@ -196,6 +192,6 @@ function crossroads_commons_migrate_pattern_content() {
         update_option( 'page_for_posts', $blog_page_id );
     }
 
-    update_option( 'crossroads_content_migrated_v1', true );
+    update_option( 'crossroads_content_migrated_v2', true );
 }
 add_action( 'admin_init', 'crossroads_commons_migrate_pattern_content' );
