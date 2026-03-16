@@ -157,9 +157,9 @@ body {
 }
 .hero > .hero-content {
   position: relative; z-index: 2;
-  padding: 0 80px 100px; max-width: 720px;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  align-items: flex-start;
+  padding: 0 80px 100px !important; max-width: 720px !important;
+  display: flex !important; flex-direction: column; justify-content: flex-end;
+  align-items: flex-start !important;
   min-height: min(calc(100vh - 72px), 780px);
 }
 /* Gradient overlay for both variants */
