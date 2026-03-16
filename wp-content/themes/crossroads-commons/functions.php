@@ -29,20 +29,24 @@ function crossroads_commons_enqueue_assets() {
         null
     );
 
-    // Custom CSS
+    // Custom CSS — version uses file mod-time so every deploy busts cache
+    $css_file = get_theme_file_path( 'assets/css/custom.css' );
+    $css_ver  = file_exists( $css_file ) ? filemtime( $css_file ) : wp_get_theme()->get( 'Version' );
     wp_enqueue_style(
         'crossroads-custom',
         get_theme_file_uri( 'assets/css/custom.css' ),
         array( 'crossroads-google-fonts', 'crossroads-material-symbols' ),
-        wp_get_theme()->get( 'Version' )
+        $css_ver
     );
 
-    // Custom JS
+    // Custom JS — version uses file mod-time so every deploy busts cache
+    $js_file = get_theme_file_path( 'assets/js/custom.js' );
+    $js_ver  = file_exists( $js_file ) ? filemtime( $js_file ) : wp_get_theme()->get( 'Version' );
     wp_enqueue_script(
         'crossroads-custom',
         get_theme_file_uri( 'assets/js/custom.js' ),
         array(),
-        wp_get_theme()->get( 'Version' ),
+        $js_ver,
         true
     );
 }

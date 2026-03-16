@@ -99,7 +99,7 @@ body {
 }
 
 /* ── HERO — full-width vision image ── */
-.hero {
+section.hero {
   margin-top: 72px !important;
   position: relative;
   min-height: min(calc(100vh - 72px), 780px);
@@ -315,8 +315,8 @@ body {
   display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
 }
 
-/* ── PAGE HERO (About) ── */
-.page-hero {
+/* ── PAGE HERO (About, Blog) ── */
+section.page-hero {
   margin-top: 72px !important;
   background: linear-gradient(135deg, var(--purple) 0%, #6E1E4B 60%, var(--magenta) 100%);
   padding: 100px 80px 80px;
@@ -760,7 +760,7 @@ body {
   .cta-banner { padding: 60px 24px; }
   .script-callout { font-size: 32px !important; }
 
-  .page-hero { padding: 60px 24px 48px; }
+  section.page-hero { padding: 80px 24px 48px; }
   .page-hero .script-callout { font-size: 32px; }
   .page-hero h1 { font-size: 36px; }
   .page-hero .subtitle { font-size: 17px; }
