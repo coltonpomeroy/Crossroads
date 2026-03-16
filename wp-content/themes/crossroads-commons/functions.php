@@ -104,3 +104,98 @@ function crossroads_commons_render_shortcodes_in_html( $block_content, $block ) 
     return $block_content;
 }
 add_filter( 'render_block', 'crossroads_commons_render_shortcodes_in_html', 10, 2 );
+
+/**
+ * One-time migration: render pattern content into pages so they are editable
+ * in the standard block editor instead of being locked in templates.
+ *
+ * Runs once on admin_init, then sets an option flag so it never runs again.
+ * Only populates pages that have empty post_content (won't overwrite edits).
+ */
+function crossroads_commons_migrate_pattern_content() {
+    if ( get_option( 'crossroads_content_migrated_v1' ) ) {
+        return;
+    }
+
+    // Page slug => ordered list of pattern files to render into that page.
+    $pages = array(
+        'home' => array(
+            'title'    => 'Home',
+            'patterns' => array( 'hero', 'color-bar', 'featured-in', 'video-section', 'places-grid', 'cta-banner' ),
+        ),
+        'about' => array(
+            'title'    => 'About',
+            'patterns' => array( 'about-hero', 'color-bar', 'about-story', 'mission-vision', 'board-members', 'faq', 'cta-banner' ),
+        ),
+        'media' => array(
+            'title'    => 'Media',
+            'patterns' => array( 'media-hero', 'color-bar', 'media-coverage', 'cta-banner' ),
+        ),
+        'contact' => array(
+            'title'    => 'Contact',
+            'patterns' => array( 'contact-hero', 'color-bar', 'contact-content', 'cta-banner' ),
+        ),
+    );
+
+    foreach ( $pages as $slug => $config ) {
+        $page = get_page_by_path( $slug );
+
+        // Skip pages that already have content (don't overwrite edits).
+        if ( $page && ! empty( trim( $page->post_content ) ) ) {
+            continue;
+        }
+
+        // Render each pattern file in order.
+        $content = '';
+        foreach ( $config['patterns'] as $pattern_slug ) {
+            $file = get_theme_file_path( "patterns/{$pattern_slug}.php" );
+            if ( file_exists( $file ) ) {
+                ob_start();
+                include $file;
+                $content .= ob_get_clean();
+            }
+        }
+
+        if ( $page ) {
+            wp_update_post( array(
+                'ID'           => $page->ID,
+                'post_content' => $content,
+            ) );
+        } else {
+            wp_insert_post( array(
+                'post_title'   => $config['title'],
+                'post_name'    => $slug,
+                'post_content' => $content,
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+            ) );
+        }
+    }
+
+    // Ensure a "Blog" page exists for the posts listing.
+    $blog_page = get_page_by_path( 'blog' );
+    if ( ! $blog_page ) {
+        $blog_page_id = wp_insert_post( array(
+            'post_title'   => 'Blog',
+            'post_name'    => 'blog',
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ) );
+    } else {
+        $blog_page_id = $blog_page->ID;
+    }
+
+    // Configure Reading Settings: static front page + separate posts page.
+    $home_page = get_page_by_path( 'home' );
+    if ( $home_page ) {
+        update_option( 'show_on_front', 'page' );
+        update_option( 'page_on_front', $home_page->ID );
+    }
+    if ( $blog_page_id ) {
+        update_option( 'page_for_posts', $blog_page_id );
+    }
+
+    update_option( 'crossroads_content_migrated_v1', true );
+}
+add_action( 'admin_init', 'crossroads_commons_migrate_pattern_content' );
