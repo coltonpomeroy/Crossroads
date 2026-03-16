@@ -27,7 +27,7 @@
         <span class="material-symbols-outlined">expand_more</span>
       </div>
       <div class="faq-answer">
-        <p>No, most of our tenants do not have a religious affiliation.</p>
+        <p>We partner with organizations committed to helping children and families flourish. Most of these organizations are not religiously affiliated. However, we do look for alignment with certain core values. If you're unsure whether your organization would be a good fit, please feel free to <a href="/contact/">reach out</a> for more information.</p>
       </div>
     </div>
 
