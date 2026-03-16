@@ -16,7 +16,8 @@ jobs:
             -e "set sftp:auto-confirm yes; \
                 set sftp:connect-program 'ssh -o StrictHostKeyChecking=no -o PubkeyAuthentication=no -o PreferredAuthentications=password'; \
                 pwd; \
-                ls; \
-                cls -R --maxdepth=3; \
+                ls crossroadscommons.com/; \
+                ls crossroadscommons.com/wp-content/; \
+                ls crossroadscommons.com/wp-content/themes/; \
                 quit" \
             sftp://${{ secrets.DREAMHOST_SERVER }}
