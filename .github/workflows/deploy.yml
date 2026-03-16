@@ -28,9 +28,14 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y lftp
 
       - name: Deploy via SFTP (${{ steps.target.outputs.environment }})
+        env:
+          LFTP_PASSWORD: ${{ secrets.DREAMHOST_PASSWORD }}
         run: |
-          lftp -u "${{ secrets.DREAMHOST_USERNAME }},${{ secrets.DREAMHOST_PASSWORD }}" \
-            -e "set sftp:auto-confirm yes; mirror --reverse --verbose --delete \
-            ./wp-content/themes/crossroads-commons/ \
-            ${{ steps.target.outputs.remote_path }}; quit" \
-            sftp://${{ secrets.DREAMHOST_SERVER }}
+          lftp -e "
+            set sftp:auto-confirm yes;
+            set sftp:connect-program 'ssh -o StrictHostKeyChecking=no -o PubkeyAuthentication=no -o PreferredAuthentications=password';
+            open sftp://${{ secrets.DREAMHOST_USERNAME }}:$LFTP_PASSWORD@${{ secrets.DREAMHOST_SERVER }};
+            mirror --reverse --verbose --delete \
+              ./wp-content/themes/crossroads-commons/ \
+              ${{ steps.target.outputs.remote_path }};
+            quit"
