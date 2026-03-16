@@ -118,14 +118,18 @@ body {
   font-size: 18px; font-weight: 700; margin-top: 16px;
 }
 
-/* ── HERO — full-width vision image (wp:cover) ── */
-.wp-block-cover.hero {
+/* ── HERO — full-width vision image ── */
+/* Shared hero container (works for both wp:cover and custom HTML) */
+.hero {
   position: relative;
-  display: flex;
-  align-items: center;
   margin-top: 72px !important;
   min-height: min(calc(100vh - 72px), 780px) !important;
   overflow: hidden;
+}
+/* wp:cover variant */
+.wp-block-cover.hero {
+  display: flex;
+  align-items: center;
 }
 .wp-block-cover.hero > .wp-block-cover__background { display: none; }
 .wp-block-cover.hero > .wp-block-cover__image-background {
@@ -134,20 +138,38 @@ body {
   object-fit: cover;
   object-position: center 30% !important;
 }
-.wp-block-cover.hero::after {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;
-  background:
-    linear-gradient(to right, rgba(76, 18, 65, 0.87) 0%, rgba(110, 30, 75, 0.65) 28%, rgba(76, 18, 65, 0.2) 58%, rgba(38, 31, 34, 0.06) 100%),
-    linear-gradient(to top, rgba(76, 18, 65, 0.45) 0%, transparent 35%);
-  pointer-events: none;
-}
 .wp-block-cover.hero > .wp-block-cover__inner-container {
   z-index: 2 !important;
   padding: 0 80px 100px !important; max-width: 720px;
   display: flex !important; flex-direction: column; justify-content: flex-end;
   align-items: flex-start !important;
   height: 100%;
+}
+/* Custom HTML variant (prod database content) */
+.hero > .hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+}
+.hero > .hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.hero > .hero-content {
+  position: relative; z-index: 2;
+  padding: 0 80px 100px; max-width: 720px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  align-items: flex-start;
+  min-height: min(calc(100vh - 72px), 780px);
+}
+/* Gradient overlay for both variants */
+.hero::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;
+  background:
+    linear-gradient(to right, rgba(76, 18, 65, 0.87) 0%, rgba(110, 30, 75, 0.65) 28%, rgba(76, 18, 65, 0.2) 58%, rgba(38, 31, 34, 0.06) 100%),
+    linear-gradient(to top, rgba(76, 18, 65, 0.45) 0%, transparent 35%);
+  pointer-events: none;
 }
 .hero-script {
   font-family: 'Native Record Script', cursive;
@@ -740,9 +762,10 @@ body {
   .nav-links { display: none; }
   .hamburger { display: block; }
 
-  .wp-block-cover.hero { margin-top: 72px; min-height: auto !important; }
-  .wp-block-cover.hero > .wp-block-cover__image-background { object-position: center 70% !important; }
-  .wp-block-cover.hero::after {
+  .hero { margin-top: 72px; min-height: auto !important; }
+  .wp-block-cover.hero > .wp-block-cover__image-background,
+  .hero > .hero-bg img { object-position: center 70% !important; }
+  .hero::after {
     background: linear-gradient(
       to top,
       rgba(76, 18, 65, 0.85) 0%,
@@ -750,7 +773,8 @@ body {
       rgba(38, 31, 34, 0.5) 100%
     );
   }
-  .wp-block-cover.hero > .wp-block-cover__inner-container { padding: 48px 24px !important; max-width: 100%; }
+  .wp-block-cover.hero > .wp-block-cover__inner-container,
+  .hero > .hero-content { padding: 48px 24px !important; max-width: 100%; min-height: auto; }
   .hero-script { font-size: 32px; }
   .hero h1, .hero .wp-block-heading { font-size: 42px; }
   .hero .tagline { font-size: 17px; }
