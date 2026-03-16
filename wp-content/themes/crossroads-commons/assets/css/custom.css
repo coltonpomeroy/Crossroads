@@ -24,6 +24,26 @@ main.wp-block-group > *,
 .wp-site-blocks > * + * { margin-block-start: 0 !important; }
 .wp-site-blocks { padding-top: 0 !important; }
 
+/* Reset WP flow-layout margins/widths inside our custom sections */
+.hero, .page-hero, .cta-banner, .video-section, .places, .board,
+.faq, .as-seen-in, .media-section, .contact-section, .story,
+.mission-vision, .faq-inner, .inner, .media-inner,
+.page-hero-content {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+:is(.hero, .page-hero, .cta-banner, .video-section, .places, .board,
+.faq, .as-seen-in, .media-section, .contact-section, .story,
+.mission-vision, .faq-inner, .inner, .media-inner,
+.page-hero-content) > * {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+  max-width: none !important;
+  margin-left: unset !important;
+  margin-right: unset !important;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: var(--charcoal);
