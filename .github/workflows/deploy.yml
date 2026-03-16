@@ -24,14 +24,16 @@ jobs:
             echo "environment=staging" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Install sshpass
-        run: sudo apt-get update && sudo apt-get install -y sshpass
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
       - name: Deploy via SFTP (${{ steps.target.outputs.environment }})
-        env:
-          SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
         run: |
-          sshpass -e rsync -avz --delete \
-            -e "ssh -o StrictHostKeyChecking=no -o PubkeyAuthentication=no -o PreferredAuthentications=password" \
-            ./wp-content/themes/crossroads-commons/ \
-            ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_SERVER }}:${{ steps.target.outputs.remote_path }}
+          lftp -u "${{ secrets.DREAMHOST_USERNAME }},${{ secrets.DREAMHOST_PASSWORD }}" \
+            -e "set sftp:auto-confirm yes; \
+                set sftp:connect-program 'ssh -o StrictHostKeyChecking=no -o PubkeyAuthentication=no -o PreferredAuthentications=password'; \
+                mirror --reverse --verbose --delete \
+                ./wp-content/themes/crossroads-commons/ \
+                ${{ steps.target.outputs.remote_path }}; \
+                quit" \
+            sftp://${{ secrets.DREAMHOST_SERVER }}
