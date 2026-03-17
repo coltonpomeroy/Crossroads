@@ -5,8 +5,8 @@
  * Categories: crossroads
  */
 ?>
-<!-- wp:group {"className":"faq","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group faq"><!-- wp:group {"className":"faq-inner","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"faq","tagName":"section","align":"full","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull faq"><!-- wp:group {"className":"faq-inner","layout":{"type":"default"}} -->
 <div class="wp-block-group faq-inner"><!-- wp:paragraph {"className":"section-label","align":"center"} -->
 <p class="section-label has-text-align-center">Common Questions</p>
 <!-- /wp:paragraph -->

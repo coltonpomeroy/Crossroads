@@ -6,8 +6,8 @@
  */
 $hero_img = esc_url( get_theme_file_uri( 'assets/images/hero-vision-day.png' ) );
 ?>
-<!-- wp:cover {"url":"<?php echo $hero_img; ?>","dimRatio":0,"isDark":true,"className":"hero"} -->
-<div class="wp-block-cover is-dark hero"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><img class="wp-block-cover__image-background" alt="Architectural vision of Crossroads Commons — aerial watercolor rendering showing the reimagined campus" src="<?php echo $hero_img; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"hero-script"} -->
+<!-- wp:cover {"url":"<?php echo $hero_img; ?>","dimRatio":0,"isDark":true,"className":"hero","align":"full"} -->
+<div class="wp-block-cover alignfull is-dark hero"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><img class="wp-block-cover__image-background" alt="Architectural vision of Crossroads Commons — aerial watercolor rendering showing the reimagined campus" src="<?php echo $hero_img; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"hero-script"} -->
 <p class="hero-script">A place to flourish</p>
 <!-- /wp:paragraph -->
 

@@ -5,8 +5,8 @@
  * Categories: crossroads
  */
 ?>
-<!-- wp:group {"className":"contact-section","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group contact-section"><!-- wp:html -->
+<!-- wp:group {"className":"contact-section","tagName":"section","align":"wide","layout":{"type":"default"}} -->
+<section class="wp-block-group alignwide contact-section"><!-- wp:html -->
 <div class="contact-grid">
   <div class="contact-form-col">
     <p class="section-label">Send a Message</p>

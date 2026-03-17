@@ -6,8 +6,8 @@
  */
 $board_dir = esc_url( get_theme_file_uri( 'assets/images/board' ) );
 ?>
-<!-- wp:group {"className":"board","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group board"><!-- wp:paragraph {"className":"section-label"} -->
+<!-- wp:group {"className":"board","tagName":"section","align":"wide","layout":{"type":"default"}} -->
+<section class="wp-block-group alignwide board"><!-- wp:paragraph {"className":"section-label"} -->
 <p class="section-label">Leadership</p>
 <!-- /wp:paragraph -->
 

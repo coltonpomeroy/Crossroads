@@ -5,8 +5,8 @@
  * Categories: crossroads
  */
 ?>
-<!-- wp:group {"className":"places","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group places"><!-- wp:paragraph {"className":"section-label"} -->
+<!-- wp:group {"className":"places","tagName":"section","align":"wide","layout":{"type":"default"}} -->
+<section class="wp-block-group alignwide places"><!-- wp:paragraph {"className":"section-label"} -->
 <p class="section-label">What We're Building</p>
 <!-- /wp:paragraph -->
 

@@ -5,8 +5,8 @@
  * Categories: crossroads
  */
 ?>
-<!-- wp:group {"className":"cta-banner","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group cta-banner"><!-- wp:group {"className":"inner","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"cta-banner","tagName":"section","align":"full","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull cta-banner"><!-- wp:group {"className":"inner","layout":{"type":"default"}} -->
 <div class="wp-block-group inner"><!-- wp:paragraph {"className":"script-callout"} -->
 <p class="script-callout">Be part of what's next</p>
 <!-- /wp:paragraph -->

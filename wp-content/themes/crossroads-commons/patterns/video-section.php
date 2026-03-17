@@ -5,8 +5,8 @@
  * Categories: crossroads
  */
 ?>
-<!-- wp:group {"className":"video-section","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group video-section"><!-- wp:html -->
+<!-- wp:group {"className":"video-section","tagName":"section","align":"full","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull video-section"><!-- wp:html -->
 <svg class="video-swoops" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M-100 600 C200 500, 400 480, 620 540 C840 600, 1040 520, 1540 280" stroke="#E66000" stroke-width="28" stroke-linecap="round"/>
   <path d="M-100 650 C200 550, 400 530, 620 590 C840 650, 1040 570, 1540 330" stroke="#D43365" stroke-width="28" stroke-linecap="round"/>

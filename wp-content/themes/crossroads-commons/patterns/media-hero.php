@@ -5,8 +5,8 @@
  * Categories: crossroads
  */
 ?>
-<!-- wp:group {"className":"page-hero","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group page-hero"><!-- wp:group {"className":"page-hero-content","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"page-hero","tagName":"section","align":"full","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull page-hero"><!-- wp:group {"className":"page-hero-content","layout":{"type":"default"}} -->
 <div class="wp-block-group page-hero-content"><!-- wp:paragraph {"className":"script-callout"} -->
 <p class="script-callout">In the News</p>
 <!-- /wp:paragraph -->

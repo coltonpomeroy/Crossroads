@@ -6,8 +6,8 @@
  */
 $logos_dir = esc_url( get_theme_file_uri( 'assets/images/logos' ) );
 ?>
-<!-- wp:group {"className":"media-section","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group media-section"><!-- wp:group {"className":"media-inner","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"media-section","tagName":"section","align":"wide","layout":{"type":"default"}} -->
+<section class="wp-block-group alignwide media-section"><!-- wp:group {"className":"media-inner","layout":{"type":"default"}} -->
 <div class="wp-block-group media-inner"><!-- wp:paragraph {"className":"section-label","align":"center"} -->
 <p class="section-label has-text-align-center">Press &amp; Publications</p>
 <!-- /wp:paragraph -->

@@ -6,8 +6,8 @@
  */
 $logos_dir = esc_url( get_theme_file_uri( 'assets/images/logos' ) );
 ?>
-<!-- wp:group {"className":"as-seen-in","tagName":"section","layout":{"type":"default"}} -->
-<section class="wp-block-group as-seen-in"><!-- wp:paragraph {"className":"as-seen-label"} -->
+<!-- wp:group {"className":"as-seen-in","tagName":"section","align":"full","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull as-seen-in"><!-- wp:paragraph {"className":"as-seen-label"} -->
 <p class="as-seen-label">As Featured In</p>
 <!-- /wp:paragraph -->
 

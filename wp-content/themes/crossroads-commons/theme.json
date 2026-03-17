@@ -76,10 +76,14 @@
     },
     "layout": {
       "contentSize": "820px",
-      "wideSize": "1280px"
+      "wideSize": "1280px",
+      "useRootPaddingAwareAlignments": true
     }
   },
   "styles": {
+    "spacing": {
+      "blockGap": "0"
+    },
     "color": {
       "background": "var(--wp--preset--color--white)",
       "text": "var(--wp--preset--color--charcoal)"
