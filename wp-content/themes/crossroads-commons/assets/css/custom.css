@@ -813,4 +813,23 @@ body {
   .contact-section { padding: 60px 24px; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .contact-form-wrap { padding: 24px; }
+
+  .single-post-main { padding: 40px 24px 60px; }
+}
+
+/* ── SINGLE POST ── */
+.single-post-main {
+  max-width: 1400px; margin: 0 auto; padding: 60px 80px 80px;
+}
+.single-post-title {
+  font-size: 42px; font-weight: 800; line-height: 1.2;
+  color: var(--charcoal); margin-bottom: 12px;
+}
+.single-post-date {
+  font-size: 14px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--magenta); margin-bottom: 32px;
+}
+.single-post-featured-image img {
+  width: 100%; max-height: 560px; object-fit: cover;
+  border-radius: 20px; margin-bottom: 48px;
 }
