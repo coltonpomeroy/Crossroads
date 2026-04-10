@@ -814,12 +814,12 @@ body {
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .contact-form-wrap { padding: 24px; }
 
-  .single-post-main { padding: 40px 24px 60px; }
+  .single-post-main { padding: 100px 24px 60px; }
 }
 
 /* ── SINGLE POST ── */
 .single-post-main {
-  max-width: 1400px; margin: 0 auto; padding: 60px 80px 80px;
+  max-width: 1400px; margin: 0 auto; padding: 132px 80px 80px;
   overflow: hidden; box-sizing: border-box;
 }
 .single-post-main img {
