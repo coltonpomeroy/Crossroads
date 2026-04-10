@@ -820,6 +820,13 @@ body {
 /* ── SINGLE POST ── */
 .single-post-main {
   max-width: 1400px; margin: 0 auto; padding: 60px 80px 80px;
+  overflow: hidden; box-sizing: border-box;
+}
+.single-post-main img {
+  max-width: 100%; height: auto;
+}
+.single-post-main figure {
+  max-width: 100%; overflow: hidden;
 }
 .single-post-title {
   font-size: 42px; font-weight: 800; line-height: 1.2;
