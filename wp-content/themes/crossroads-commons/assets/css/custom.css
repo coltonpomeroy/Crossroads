@@ -741,7 +741,7 @@ body {
   .nav-links { display: none; }
   .hamburger { display: block; }
 
-  .hero { margin-top: 72px; min-height: auto !important; }
+  .hero { margin-top: 72px; min-height: calc(100vh - 72px) !important; }
   .wp-block-cover.hero > .wp-block-cover__image-background,
   .hero > .hero-bg img { object-position: center 70% !important; }
   .hero::after {
