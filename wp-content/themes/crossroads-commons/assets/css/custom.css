@@ -136,6 +136,7 @@ section.hero {
   top: 0; left: 0; width: 100%; height: 100%;
 }
 .hero > .hero-bg img {
+  content: url('https://crossroadscommons.com/wp-content/uploads/2026/03/LevelFields_Birds_Main-Drive_AFTER-DAY-e1775941486456.jpg');
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center 30%;
