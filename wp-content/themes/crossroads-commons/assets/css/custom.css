@@ -102,6 +102,11 @@ body {
   margin-top: 72px !important;
   min-height: min(calc(100vh - 72px), 780px) !important;
   overflow: hidden;
+  background-color: transparent !important;
+}
+.wp-block-cover.hero,
+section.hero {
+  background-color: transparent !important;
 }
 /* wp:cover variant */
 .wp-block-cover.hero {
