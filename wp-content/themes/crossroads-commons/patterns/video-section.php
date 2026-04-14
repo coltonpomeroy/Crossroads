@@ -27,7 +27,7 @@
 <div class="video-frame">
   <div class="video-color-bar"><span></span><span></span><span></span><span></span><span></span></div>
   <div class="video-wrapper">
-    <video src="https://crossroadscommons.com/wp-content/uploads/2026/04/crossroads-pitch-2026-web.mp4" title="Crossroads Commons vision video" controls playsinline preload="metadata"></video>
+    <video src="https://crossroadscommons.com/wp-content/uploads/2026/04/crossroads-pitch-2026-web.mp4" title="Crossroads Commons vision video" controls playsinline muted preload="metadata"></video>
   </div>
   <div class="video-color-bar"><span></span><span></span><span></span><span></span><span></span></div>
 </div>
