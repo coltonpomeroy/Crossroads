@@ -27,7 +27,7 @@
 <div class="video-frame">
   <div class="video-color-bar"><span></span><span></span><span></span><span></span><span></span></div>
   <div class="video-wrapper">
-    <iframe src="https://drive.google.com/file/d/11PuvZluU0W5xBXda6ybpta3tGkuqARTd/preview" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://drive.google.com/file/d/11PuvZluU0W5xBXda6ybpta3tGkuqARTd/preview" title="Crossroads Commons vision video" allowfullscreen></iframe>
   </div>
   <div class="video-color-bar"><span></span><span></span><span></span><span></span><span></span></div>
 </div>
