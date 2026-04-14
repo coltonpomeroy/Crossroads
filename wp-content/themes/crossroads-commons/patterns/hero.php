@@ -21,7 +21,7 @@ $hero_img = esc_url( get_theme_file_uri( 'assets/images/hero-vision-day.png' ) )
 
 <!-- wp:html -->
 <div class="hero-buttons">
-  <a href="#" class="btn btn-magenta">
+  <a href="#vision" class="btn btn-magenta">
     <span class="material-symbols-outlined" style="font-size:20px">explore</span>
     Explore the Vision
   </a>
