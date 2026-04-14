@@ -114,7 +114,7 @@ add_filter( 'render_block', 'crossroads_commons_render_shortcodes_in_html', 10, 
  * instead of raw HTML code blocks.
  */
 function crossroads_commons_migrate_pattern_content() {
-    if ( get_option( 'crossroads_content_migrated_v7' ) ) {
+    if ( get_option( 'crossroads_content_migrated_v8' ) ) {
         return;
     }
 
@@ -192,6 +192,6 @@ function crossroads_commons_migrate_pattern_content() {
         update_option( 'page_for_posts', $blog_page_id );
     }
 
-    update_option( 'crossroads_content_migrated_v7', true );
+    update_option( 'crossroads_content_migrated_v8', true );
 }
-add_action( 'init', 'crossroads_commons_migrate_pattern_content' );
+add_action( 'admin_init', 'crossroads_commons_migrate_pattern_content' );
