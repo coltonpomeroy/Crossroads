@@ -31,6 +31,12 @@ $board_dir = esc_url( get_theme_file_uri( 'assets/images/board' ) );
   </div>
   <div class="board-member">
     <div class="avatar">
+      <img src="<?php echo $board_dir; ?>/ofelia-cancio.jpg" alt="Ofelia Cancio">
+    </div>
+    <h4>Ofelia Cancio</h4>
+  </div>
+  <div class="board-member">
+    <div class="avatar">
       <img src="<?php echo $board_dir; ?>/tyler-green.jpg" alt="Tyler Green" style="object-position: center 5%;">
     </div>
     <h4>Tyler Green</h4>
