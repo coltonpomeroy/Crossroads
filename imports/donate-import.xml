@@ -17,13 +17,13 @@
  7. WordPress will then import each of the posts, pages, comments, categories, etc.
     contained in this file into your site.
 -->
-<!-- generator="WordPress/7.0.1" created="2026-07-14 20:07" -->
+<!-- generator="WordPress/7.0.1" created="2026-07-14 21:32" -->
 <rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
   <channel>
 <title>Crossroads</title>
 <link>http://localhost:8885</link>
 <description/>
-<pubDate>Tue, 14 Jul 2026 20:07:01 +0000</pubDate>
+<pubDate>Tue, 14 Jul 2026 21:32:25 +0000</pubDate>
 <language>en-US</language>
 <wp:wxr_version>1.2</wp:wxr_version>
 <wp:base_site_url>http://localhost:8885</wp:base_site_url>
@@ -103,24 +103,17 @@
   <p class="script-callout">Be part of what's next</p>
   <h1>Help Build Crossroads Commons</h1>
   <p>Your gift funds the next phase of community-led revitalization in South OKC — gathering places, small businesses, and green space the whole neighborhood can share.</p>
-  <button class="btn btn-white" data-donate-open type="button">Donate Now</button>
 </section>
-<div class="donate-modal" id="donate-modal" aria-hidden="true">
-  <div class="donate-modal-overlay" data-donate-close></div>
-  <div class="donate-modal-box">
-    <button class="donate-modal-close" data-donate-close aria-label="Close" type="button">&times;</button>
-    <h2>Make a Donation</h2>
-    <p class="donate-modal-sub">Secure payment via PayPal.</p>
-    [charitable_donation_form campaign_id=5]
-  </div>
+<div class="donate-form-card">
+  [charitable_donation_form campaign_id=5]
 </div>
 <!-- /wp:html -->]]></content:encoded>
   <excerpt:encoded><![CDATA[]]></excerpt:encoded>
   <wp:post_id>6</wp:post_id>
   <wp:post_date>2026-07-14 13:13:32</wp:post_date>
   <wp:post_date_gmt>2026-07-14 13:13:32</wp:post_date_gmt>
-  <wp:post_modified>2026-07-14 20:07:00</wp:post_modified>
-  <wp:post_modified_gmt>2026-07-14 20:07:00</wp:post_modified_gmt>
+  <wp:post_modified>2026-07-14 21:32:24</wp:post_modified>
+  <wp:post_modified_gmt>2026-07-14 21:32:24</wp:post_modified_gmt>
   <wp:comment_status>closed</wp:comment_status>
   <wp:ping_status>closed</wp:ping_status>
   <wp:post_name>donate</wp:post_name>

@@ -847,10 +847,10 @@ section.hero {
 }
 
 /* ══════════════════════════════════════════
-   DONATE PAGE + MODAL
+   DONATE PAGE (inline 2-step wizard)
    ══════════════════════════════════════════ */
 .donate-intro {
-  max-width: 720px; margin: 0 auto; padding: 80px 24px 96px;
+  max-width: 720px; margin: 0 auto; padding: 80px 24px 24px;
   text-align: center;
 }
 .donate-intro .script-callout { color: var(--magenta); }
@@ -860,97 +860,74 @@ section.hero {
 }
 .donate-intro p {
   font-size: 18px; line-height: 1.7; color: var(--charcoal);
-  margin: 0 auto 36px; max-width: 560px;
+  margin: 0 auto; max-width: 560px;
 }
-.donate-intro .btn-white { box-shadow: 0 8px 24px rgba(212,51,101,0.25); }
 
-/* Modal shell */
-.donate-modal {
-  position: fixed; inset: 0; z-index: 9999;
-  display: none; align-items: flex-start; justify-content: center;
-  padding: 40px 16px; overflow-y: auto;
-}
-.donate-modal.open { display: flex; }
-body.donate-modal-open { overflow: hidden; }
-.donate-modal-overlay {
-  position: fixed; inset: 0; background: rgba(38,31,34,0.6);
-  backdrop-filter: blur(3px);
-}
-.donate-modal-box {
-  position: relative; z-index: 1; width: 100%; max-width: 560px;
+/* Inline form card */
+.donate-form-card {
+  width: 100%; max-width: 560px; margin: 24px auto 96px;
   background: var(--white); border-radius: 20px;
-  padding: 40px 36px 36px; margin: auto;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  animation: donateModalIn 0.25s ease;
+  padding: 40px 36px 36px;
+  box-shadow: 0 12px 40px rgba(38,31,34,0.10);
+  border: 1px solid #efeceD;
 }
-@keyframes donateModalIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.donate-modal-close {
-  position: absolute; top: 14px; right: 18px;
-  background: none; border: none; cursor: pointer;
-  font-size: 30px; line-height: 1; color: var(--silver);
-  transition: color 0.2s;
-}
-.donate-modal-close:hover { color: var(--magenta); }
-.donate-modal-box h2 {
-  font-size: 26px; color: var(--purple); margin: 0 0 4px;
-}
-.donate-modal-box .donate-modal-sub {
+.donate-form-card .donate-form-note {
   color: var(--silver); font-size: 15px; margin: 0 0 20px;
 }
 
 /* Charitable donation form — on-brand tidy-up */
-.donate-modal-box .charitable-form-field label,
-.donate-modal-box .charitable-donation-amount-header {
+.donate-form-card .charitable-form-field label,
+.donate-form-card .charitable-donation-amount-header {
   font-weight: 600; color: var(--charcoal);
 }
-.donate-modal-box .donation-amounts,
-.donate-modal-box ul.donation-amounts {
+.donate-form-card .charitable-form-header {
+  font-size: 20px; font-weight: 700; color: var(--purple); margin-bottom: 12px;
+}
+.donate-form-card .donation-amounts,
+.donate-form-card ul.donation-amounts {
   display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
   list-style: none; margin: 0 0 16px; padding: 0;
 }
-.donate-modal-box .donation-amount {
+.donate-form-card .donation-amount {
   border: 2px solid #e7e3e5 !important; border-radius: 12px !important;
   padding: 14px 10px !important; text-align: center; cursor: pointer;
   transition: all 0.15s; background: var(--white);
 }
-.donate-modal-box .donation-amount:hover {
+.donate-form-card .donation-amount:hover {
   border-color: var(--magenta) !important;
 }
-.donate-modal-box .donation-amount.selected,
-.donate-modal-box li.donation-amount.selected {
+.donate-form-card .donation-amount.selected,
+.donate-form-card li.donation-amount.selected {
   border-color: var(--purple) !important;
   background: var(--purple) !important; color: var(--white) !important;
 }
-.donate-modal-box .donation-amount.selected * { color: var(--white) !important; }
-.donate-modal-box input[type="text"],
-.donate-modal-box input[type="email"],
-.donate-modal-box input[type="number"],
-.donate-modal-box select {
+.donate-form-card .donation-amount.selected * { color: var(--white) !important; }
+.donate-form-card input[type="text"],
+.donate-form-card input[type="email"],
+.donate-form-card input[type="number"],
+.donate-form-card select {
   border: 2px solid #e7e3e5; border-radius: 10px;
   padding: 12px 14px; width: 100%; font-size: 15px;
 }
-.donate-modal-box input:focus,
-.donate-modal-box select:focus {
+.donate-form-card input:focus,
+.donate-form-card select:focus {
   outline: none; border-color: var(--magenta);
 }
-.donate-modal-box .donation-amount-selection .custom-donation-amount {
+.donate-form-card .donation-amount-selection .custom-donation-amount {
   margin-top: 8px;
 }
-.donate-modal-box button[type="submit"],
-.donate-modal-box .donate-button,
-.donate-modal-box input[type="submit"] {
+.donate-form-card button[type="submit"],
+.donate-form-card .donate-button,
+.donate-form-card input[type="submit"] {
   background: var(--magenta) !important; color: var(--white) !important;
   border: none !important; border-radius: 10px !important;
   padding: 15px 28px !important; font-size: 16px !important;
   font-weight: 600 !important; width: 100%; cursor: pointer;
   transition: background 0.2s;
 }
-.donate-modal-box button[type="submit"]:hover,
-.donate-modal-box .donate-button:hover,
-.donate-modal-box input[type="submit"]:hover {
+.donate-form-card button[type="submit"]:hover,
+.donate-form-card .donate-button:hover,
+.donate-form-card input[type="submit"]:hover {
   background: var(--purple) !important;
 }
 
@@ -969,27 +946,32 @@ body.donate-modal-open { overflow: hidden; }
 .donate-wizard[data-step="2"] .donate-step-1-el { display: none !important; }
 
 /* Continue button — mirrors the primary Donate button */
-.donate-modal-box .donate-continue {
+.donate-form-card .donate-continue {
   background: var(--magenta) !important; color: var(--white) !important;
   border: none !important; border-radius: 10px !important;
   padding: 15px 28px !important; font-size: 16px !important;
   font-weight: 600 !important; width: 100%; cursor: pointer;
   transition: background 0.2s; margin-top: 4px;
 }
-.donate-modal-box .donate-continue:hover { background: var(--purple) !important; }
+.donate-form-card .donate-continue:hover { background: var(--purple) !important; }
 
 /* Back link — subtle */
-.donate-modal-box .donate-wizard-back {
+.donate-form-card .donate-wizard-back {
   background: none; border: none; cursor: pointer;
   color: var(--silver); font-size: 14px; font-weight: 600;
   padding: 0; margin: 0 0 14px; transition: color 0.2s;
 }
-.donate-modal-box .donate-wizard-back:hover { color: var(--magenta); }
+.donate-form-card .donate-wizard-back:hover { color: var(--magenta); }
 
 @media (max-width: 480px) {
-  .donate-modal-box { padding: 36px 22px 28px; }
-  .donate-modal-box .donation-amounts { grid-template-columns: 1fr; }
+  .donate-form-card { padding: 32px 22px 28px; }
+  .donate-form-card .donation-amounts { grid-template-columns: 1fr; }
 }
 
-/* Keep the modal within the viewport and let its body scroll if needed */
-.donate-modal-box { max-height: calc(100vh - 80px); overflow-y: auto; }
+/* Hide the redundant per-field required asterisks (every field is required) */
+.donate-form-card .charitable-form abbr.required,
+.donate-form-card label abbr.required { display: none; }
+
+/* Hide the "Registered before? Log in…" prompt + its toggled login form */
+.donate-form-card .login-prompt,
+.donate-form-card #charitable-donation-login-form { display: none !important; }
