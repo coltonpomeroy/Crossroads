@@ -954,7 +954,42 @@ body.donate-modal-open { overflow: hidden; }
   background: var(--purple) !important;
 }
 
+/* Two-step wizard */
+.donate-step-indicator {
+  font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--magenta);
+  margin: 0 0 16px;
+}
+.donate-step-indicator.donate-step-warn { color: var(--orange); }
+
+/* Step visibility — driven by data-step on the form */
+.donate-wizard[data-step="1"] .donate-step-2,
+.donate-wizard[data-step="1"] .donate-step-2-el { display: none !important; }
+.donate-wizard[data-step="2"] .donate-step-1,
+.donate-wizard[data-step="2"] .donate-step-1-el { display: none !important; }
+
+/* Continue button — mirrors the primary Donate button */
+.donate-modal-box .donate-continue {
+  background: var(--magenta) !important; color: var(--white) !important;
+  border: none !important; border-radius: 10px !important;
+  padding: 15px 28px !important; font-size: 16px !important;
+  font-weight: 600 !important; width: 100%; cursor: pointer;
+  transition: background 0.2s; margin-top: 4px;
+}
+.donate-modal-box .donate-continue:hover { background: var(--purple) !important; }
+
+/* Back link — subtle */
+.donate-modal-box .donate-wizard-back {
+  background: none; border: none; cursor: pointer;
+  color: var(--silver); font-size: 14px; font-weight: 600;
+  padding: 0; margin: 0 0 14px; transition: color 0.2s;
+}
+.donate-modal-box .donate-wizard-back:hover { color: var(--magenta); }
+
 @media (max-width: 480px) {
   .donate-modal-box { padding: 36px 22px 28px; }
   .donate-modal-box .donation-amounts { grid-template-columns: 1fr; }
 }
+
+/* Keep the modal within the viewport and let its body scroll if needed */
+.donate-modal-box { max-height: calc(100vh - 80px); overflow-y: auto; }
