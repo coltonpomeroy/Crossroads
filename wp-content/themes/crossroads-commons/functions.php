@@ -113,15 +113,41 @@ function crossroads_commons_register_patterns() {
 add_action( 'init', 'crossroads_commons_register_patterns' );
 
 /**
- * Process shortcodes inside wp:html blocks so plugins like WPForms render properly.
+ * Process shortcodes inside wp:html blocks so plugins like WPForms and
+ * Charitable render properly (e.g. the donation form inside the Donate modal).
  */
 function crossroads_commons_render_shortcodes_in_html( $block_content, $block ) {
-    if ( 'core/html' === $block['blockName'] && has_shortcode( $block_content, 'wpforms' ) ) {
+    if ( 'core/html' === $block['blockName']
+        && ( has_shortcode( $block_content, 'wpforms' )
+            || has_shortcode( $block_content, 'charitable_donation_form' ) ) ) {
         $block_content = do_shortcode( $block_content );
     }
     return $block_content;
 }
 add_filter( 'render_block', 'crossroads_commons_render_shortcodes_in_html', 10, 2 );
+
+/**
+ * Whether the Donate page is live (exists AND published). Used to gate the
+ * "Donate" nav item / CTA so they only appear once the page is published —
+ * lets the theme ship while the Donate page is still a draft (pending PayPal).
+ */
+function crossroads_commons_donate_page_live() {
+    $page = get_page_by_path( 'donate' );
+    return ( $page && 'publish' === $page->post_status );
+}
+
+/**
+ * Slim down the Charitable donation form: drop the optional mailing-address and
+ * phone fields so the donor only sees name + email. Keeps the form short and
+ * focused (the modal on the Donate page). Address is not needed for PayPal.
+ */
+function crossroads_commons_trim_donation_fields( $fields ) {
+    foreach ( array( 'address', 'address_2', 'city', 'state', 'postcode', 'country', 'phone' ) as $key ) {
+        unset( $fields[ $key ] );
+    }
+    return $fields;
+}
+add_filter( 'charitable_donation_form_user_fields', 'crossroads_commons_trim_donation_fields' );
 
 /**
  * One-time migration: render pattern content into pages so they are editable

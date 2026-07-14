@@ -845,3 +845,116 @@ section.hero {
   width: 100%; max-height: 560px; object-fit: cover;
   border-radius: 20px; margin-bottom: 48px;
 }
+
+/* ══════════════════════════════════════════
+   DONATE PAGE + MODAL
+   ══════════════════════════════════════════ */
+.donate-intro {
+  max-width: 720px; margin: 0 auto; padding: 80px 24px 96px;
+  text-align: center;
+}
+.donate-intro .script-callout { color: var(--magenta); }
+.donate-intro h1 {
+  font-size: clamp(36px, 5vw, 56px); line-height: 1.1;
+  color: var(--purple); margin: 8px 0 20px;
+}
+.donate-intro p {
+  font-size: 18px; line-height: 1.7; color: var(--charcoal);
+  margin: 0 auto 36px; max-width: 560px;
+}
+.donate-intro .btn-white { box-shadow: 0 8px 24px rgba(212,51,101,0.25); }
+
+/* Modal shell */
+.donate-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  display: none; align-items: flex-start; justify-content: center;
+  padding: 40px 16px; overflow-y: auto;
+}
+.donate-modal.open { display: flex; }
+body.donate-modal-open { overflow: hidden; }
+.donate-modal-overlay {
+  position: fixed; inset: 0; background: rgba(38,31,34,0.6);
+  backdrop-filter: blur(3px);
+}
+.donate-modal-box {
+  position: relative; z-index: 1; width: 100%; max-width: 560px;
+  background: var(--white); border-radius: 20px;
+  padding: 40px 36px 36px; margin: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  animation: donateModalIn 0.25s ease;
+}
+@keyframes donateModalIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.donate-modal-close {
+  position: absolute; top: 14px; right: 18px;
+  background: none; border: none; cursor: pointer;
+  font-size: 30px; line-height: 1; color: var(--silver);
+  transition: color 0.2s;
+}
+.donate-modal-close:hover { color: var(--magenta); }
+.donate-modal-box h2 {
+  font-size: 26px; color: var(--purple); margin: 0 0 4px;
+}
+.donate-modal-box .donate-modal-sub {
+  color: var(--silver); font-size: 15px; margin: 0 0 20px;
+}
+
+/* Charitable donation form — on-brand tidy-up */
+.donate-modal-box .charitable-form-field label,
+.donate-modal-box .charitable-donation-amount-header {
+  font-weight: 600; color: var(--charcoal);
+}
+.donate-modal-box .donation-amounts,
+.donate-modal-box ul.donation-amounts {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  list-style: none; margin: 0 0 16px; padding: 0;
+}
+.donate-modal-box .donation-amount {
+  border: 2px solid #e7e3e5 !important; border-radius: 12px !important;
+  padding: 14px 10px !important; text-align: center; cursor: pointer;
+  transition: all 0.15s; background: var(--white);
+}
+.donate-modal-box .donation-amount:hover {
+  border-color: var(--magenta) !important;
+}
+.donate-modal-box .donation-amount.selected,
+.donate-modal-box li.donation-amount.selected {
+  border-color: var(--purple) !important;
+  background: var(--purple) !important; color: var(--white) !important;
+}
+.donate-modal-box .donation-amount.selected * { color: var(--white) !important; }
+.donate-modal-box input[type="text"],
+.donate-modal-box input[type="email"],
+.donate-modal-box input[type="number"],
+.donate-modal-box select {
+  border: 2px solid #e7e3e5; border-radius: 10px;
+  padding: 12px 14px; width: 100%; font-size: 15px;
+}
+.donate-modal-box input:focus,
+.donate-modal-box select:focus {
+  outline: none; border-color: var(--magenta);
+}
+.donate-modal-box .donation-amount-selection .custom-donation-amount {
+  margin-top: 8px;
+}
+.donate-modal-box button[type="submit"],
+.donate-modal-box .donate-button,
+.donate-modal-box input[type="submit"] {
+  background: var(--magenta) !important; color: var(--white) !important;
+  border: none !important; border-radius: 10px !important;
+  padding: 15px 28px !important; font-size: 16px !important;
+  font-weight: 600 !important; width: 100%; cursor: pointer;
+  transition: background 0.2s;
+}
+.donate-modal-box button[type="submit"]:hover,
+.donate-modal-box .donate-button:hover,
+.donate-modal-box input[type="submit"]:hover {
+  background: var(--purple) !important;
+}
+
+@media (max-width: 480px) {
+  .donate-modal-box { padding: 36px 22px 28px; }
+  .donate-modal-box .donation-amounts { grid-template-columns: 1fr; }
+}

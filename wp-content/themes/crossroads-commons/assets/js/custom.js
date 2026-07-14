@@ -23,6 +23,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ── Donate Modal ──
+  const donateModal = document.getElementById('donate-modal');
+  if (donateModal) {
+    const openModal = function () {
+      donateModal.classList.add('open');
+      donateModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('donate-modal-open');
+    };
+    const closeModal = function () {
+      donateModal.classList.remove('open');
+      donateModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('donate-modal-open');
+    };
+    document.querySelectorAll('[data-donate-open]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+      });
+    });
+    donateModal.querySelectorAll('[data-donate-close]').forEach(function (btn) {
+      btn.addEventListener('click', closeModal);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && donateModal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+  }
+
   // ── Video Section: play when scrolled into view, pause when out ──
   const visionVideo = document.querySelector('.video-section video');
   if (visionVideo && 'IntersectionObserver' in window) {
