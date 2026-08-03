@@ -847,7 +847,7 @@ section.hero {
 }
 
 /* ══════════════════════════════════════════
-   DONATE PAGE (inline 2-step wizard)
+   DONATE PAGE (Stripe Payment Links)
    ══════════════════════════════════════════ */
 .donate-intro {
   max-width: 720px; margin: 0 auto; padding: 80px 24px 24px;
@@ -863,115 +863,120 @@ section.hero {
   margin: 0 auto; max-width: 560px;
 }
 
-/* Inline form card */
+/* Card wrapping the amount picker */
 .donate-form-card {
   width: 100%; max-width: 560px; margin: 24px auto 96px;
   background: var(--white); border-radius: 20px;
-  padding: 40px 36px 36px;
+  padding: 32px 36px 28px;
   box-shadow: 0 12px 40px rgba(38,31,34,0.10);
-  border: 1px solid #efeceD;
+  border: 1px solid #efeced;
 }
 .donate-form-card .donate-form-note {
-  color: var(--silver); font-size: 15px; margin: 0 0 20px;
+  color: var(--silver); font-size: 15px; line-height: 1.6; margin: 16px 0 0;
+}
+.donate-form-card .donate-form-note a { color: var(--magenta); font-weight: 600; }
+
+/* "Coming soon" state — shown until a Stripe link is configured */
+.donate-form-card-empty { text-align: center; }
+.donate-empty-title {
+  font-size: 20px; font-weight: 700; color: var(--purple); margin: 0;
 }
 
-/* Charitable donation form — on-brand tidy-up */
-.donate-form-card .charitable-form-field label,
-.donate-form-card .charitable-donation-amount-header {
-  font-weight: 600; color: var(--charcoal);
+/* One-time / Monthly toggle */
+.donate-freq {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  background: #f3f0f1; border-radius: 12px; padding: 4px; margin-bottom: 24px;
 }
-.donate-form-card .charitable-form-header {
-  font-size: 20px; font-weight: 700; color: var(--purple); margin-bottom: 12px;
+.donate-freq-btn {
+  border: none; background: none; cursor: pointer;
+  padding: 11px 12px; border-radius: 9px;
+  font-family: inherit; font-size: 15px; font-weight: 600;
+  color: var(--charcoal); transition: background 0.18s, color 0.18s;
 }
-.donate-form-card .donation-amounts,
-.donate-form-card ul.donation-amounts {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  list-style: none; margin: 0 0 16px; padding: 0;
-}
-.donate-form-card .donation-amount {
-  border: 2px solid #e7e3e5 !important; border-radius: 12px !important;
-  padding: 14px 10px !important; text-align: center; cursor: pointer;
-  transition: all 0.15s; background: var(--white);
-}
-.donate-form-card .donation-amount:hover {
-  border-color: var(--magenta) !important;
-}
-.donate-form-card .donation-amount.selected,
-.donate-form-card li.donation-amount.selected {
-  border-color: var(--purple) !important;
-  background: var(--purple) !important; color: var(--white) !important;
-}
-.donate-form-card .donation-amount.selected * { color: var(--white) !important; }
-.donate-form-card input[type="text"],
-.donate-form-card input[type="email"],
-.donate-form-card input[type="number"],
-.donate-form-card select {
-  border: 2px solid #e7e3e5; border-radius: 10px;
-  padding: 12px 14px; width: 100%; font-size: 15px;
-}
-.donate-form-card input:focus,
-.donate-form-card select:focus {
-  outline: none; border-color: var(--magenta);
-}
-.donate-form-card .donation-amount-selection .custom-donation-amount {
-  margin-top: 8px;
-}
-.donate-form-card button[type="submit"],
-.donate-form-card .donate-button,
-.donate-form-card input[type="submit"] {
-  background: var(--magenta) !important; color: var(--white) !important;
-  border: none !important; border-radius: 10px !important;
-  padding: 15px 28px !important; font-size: 16px !important;
-  font-weight: 600 !important; width: 100%; cursor: pointer;
-  transition: background 0.2s;
-}
-.donate-form-card button[type="submit"]:hover,
-.donate-form-card .donate-button:hover,
-.donate-form-card input[type="submit"]:hover {
-  background: var(--purple) !important;
+.donate-freq-btn:hover { color: var(--magenta); }
+.donate-freq-btn.is-active {
+  background: var(--white); color: var(--purple);
+  box-shadow: 0 1px 4px rgba(38,31,34,0.12);
 }
 
-/* Two-step wizard */
-.donate-step-indicator {
+/* Amount grid */
+.donate-panel-label {
   font-size: 13px; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; color: var(--magenta);
-  margin: 0 0 16px;
+  text-transform: uppercase; color: var(--magenta); margin: 0 0 12px;
 }
-.donate-step-indicator.donate-step-warn { color: var(--orange); }
-
-/* Step visibility — driven by data-step on the form */
-.donate-wizard[data-step="1"] .donate-step-2,
-.donate-wizard[data-step="1"] .donate-step-2-el { display: none !important; }
-.donate-wizard[data-step="2"] .donate-step-1,
-.donate-wizard[data-step="2"] .donate-step-1-el { display: none !important; }
-
-/* Continue button — mirrors the primary Donate button */
-.donate-form-card .donate-continue {
-  background: var(--magenta) !important; color: var(--white) !important;
-  border: none !important; border-radius: 10px !important;
-  padding: 15px 28px !important; font-size: 16px !important;
-  font-weight: 600 !important; width: 100%; cursor: pointer;
-  transition: background 0.2s; margin-top: 4px;
+.donate-amounts {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0;
 }
-.donate-form-card .donate-continue:hover { background: var(--purple) !important; }
-
-/* Back link — subtle */
-.donate-form-card .donate-wizard-back {
-  background: none; border: none; cursor: pointer;
-  color: var(--silver); font-size: 14px; font-weight: 600;
-  padding: 0; margin: 0 0 14px; transition: color 0.2s;
+.donate-amount {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; min-height: 74px; padding: 12px 10px; cursor: pointer;
+  background: var(--white); border: 2px solid #e7e3e5; border-radius: 12px;
+  font-family: inherit; transition: border-color 0.15s, background 0.15s, color 0.15s;
 }
-.donate-form-card .donate-wizard-back:hover { color: var(--magenta); }
+.donate-amount:hover { border-color: var(--magenta); }
+.donate-amount:focus-visible { outline: 3px solid var(--sky-blue); outline-offset: 2px; }
+.donate-amount[aria-pressed="true"] {
+  background: var(--purple); border-color: var(--purple); color: var(--white);
+}
+.donate-amount-value {
+  font-size: 22px; font-weight: 700; color: var(--purple); line-height: 1.1;
+}
+.donate-amount-per { font-size: 14px; font-weight: 600; }
+.donate-amount-label {
+  font-size: 13px; font-weight: 600; color: var(--silver);
+}
+.donate-amount[aria-pressed="true"] .donate-amount-value,
+.donate-amount[aria-pressed="true"] .donate-amount-label { color: var(--white); }
+
+/* "Other amount" spans the full row */
+.donate-amount-custom { grid-column: 1 / -1; }
+.donate-amount-custom .donate-amount-value { font-size: 18px; }
+
+/* Primary action */
+.donate-submit {
+  display: block; width: 100%; margin: 20px 0 0; cursor: pointer;
+  background: var(--magenta); color: var(--white);
+  border: none; border-radius: 10px;
+  padding: 16px 28px; font-family: inherit; font-size: 16px; font-weight: 600;
+  transition: background 0.2s, opacity 0.2s;
+}
+.donate-submit:hover:not(:disabled) { background: var(--purple); }
+.donate-submit:disabled { background: #d9d3d6; color: #fff; cursor: not-allowed; }
+
+/* Stripe reassurance line */
+.donate-secure {
+  text-align: center; margin: 16px 0 0;
+  font-size: 13px; line-height: 1.6; color: var(--silver);
+}
+.donate-secure .material-symbols-outlined {
+  font-size: 15px; vertical-align: -3px; margin-right: 3px;
+}
 
 @media (max-width: 480px) {
-  .donate-form-card { padding: 32px 22px 28px; }
-  .donate-form-card .donation-amounts { grid-template-columns: 1fr; }
+  .donate-intro { padding-top: 56px; }
+  .donate-form-card { padding: 26px 20px 22px; }
+  .donate-amounts { grid-template-columns: 1fr 1fr; }
+  .donate-amount { min-height: 66px; }
+  .donate-amount-value { font-size: 19px; }
 }
 
-/* Hide the redundant per-field required asterisks (every field is required) */
-.donate-form-card .charitable-form abbr.required,
-.donate-form-card label abbr.required { display: none; }
-
-/* Hide the "Registered before? Log in…" prompt + its toggled login form */
-.donate-form-card .login-prompt,
-.donate-form-card #charitable-donation-login-form { display: none !important; }
+/* ══════════════════════════════════════════
+   THANK YOU PAGE (post-donation)
+   ══════════════════════════════════════════ */
+.thankyou-inner {
+  max-width: 640px; margin: 0 auto; padding: 96px 24px 112px; text-align: center;
+}
+.thankyou-mark {
+  font-size: 56px; color: var(--magenta); margin-bottom: 8px; display: block;
+}
+.thankyou-inner .script-callout { color: var(--magenta); }
+.thankyou-inner h1 {
+  font-size: clamp(32px, 4.5vw, 48px); line-height: 1.15;
+  color: var(--purple); margin: 8px 0 20px;
+}
+.thankyou-lead {
+  font-size: 18px; line-height: 1.7; color: var(--charcoal); margin: 0 auto 32px;
+}
+.thankyou-actions {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}

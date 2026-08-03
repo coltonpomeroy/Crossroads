@@ -23,77 +23,71 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ── Inline Donation Wizard (Donate page) ──
-  const donateCard = document.querySelector('.donate-form-card');
-  if (donateCard) {
-    const form = donateCard.querySelector('#charitable-donation-form');
+  // ── Donation amount picker (Donate page) ──
+  // Each amount tile carries the Stripe Payment Link it should open. We only
+  // pick a destination here — Stripe collects the card, name, and email.
+  const donateWidget = document.querySelector('.donate-widget');
 
-    const gotoStep = function (step) {
-      if (!form) return;
-      form.dataset.step = String(step);
-      const ind = form.querySelector('.donate-step-indicator');
-      if (ind) ind.textContent = 'Step ' + step + ' of 2';
-      // Keep the top of the card in view when switching steps.
-      const top = donateCard.getBoundingClientRect().top + window.scrollY - 24;
-      if (window.scrollY > top) window.scrollTo({ top: top, behavior: 'smooth' });
-    };
+  if (donateWidget) {
+    const freqButtons = donateWidget.querySelectorAll('.donate-freq-btn');
+    const panels = donateWidget.querySelectorAll('.donate-panel');
+    const submit = donateWidget.querySelector('.donate-submit');
+    let selected = null;
 
-    // Turn the (server-rendered) Charitable form into a 2-step wizard.
-    const initWizard = function () {
-      if (!form || form.classList.contains('donate-wizard')) return;
-
-      const fieldsets = form.querySelectorAll('fieldset.charitable-fieldset');
-      const amountFs = fieldsets[0];
-      const detailsFs = form.querySelector('#charitable-donor-fields') || fieldsets[1];
-      const submitBtn = form.querySelector('[type="submit"][name="donate"], .donate-button');
-      if (!amountFs || !detailsFs || !submitBtn) return; // structure changed — leave form as-is
-
-      form.classList.add('donate-wizard');
-
-      // Step indicator at the top of the form.
-      const indicator = document.createElement('div');
-      indicator.className = 'donate-step-indicator';
-      indicator.textContent = 'Step 1 of 2';
-      form.insertBefore(indicator, form.firstChild);
-
-      amountFs.classList.add('donate-step-1');
-      detailsFs.classList.add('donate-step-2');
-      submitBtn.classList.add('donate-step-2-el');
-      if (submitBtn.parentElement && submitBtn.parentElement !== form) {
-        submitBtn.parentElement.classList.add('donate-step-2-el');
-      }
-
-      // "Continue" — advances to step 2 (only shown on step 1).
-      const continueBtn = document.createElement('button');
-      continueBtn.type = 'button';
-      continueBtn.className = 'charitable-button donate-wizard-btn donate-continue donate-step-1-el';
-      continueBtn.textContent = 'Continue →';
-      amountFs.insertAdjacentElement('afterend', continueBtn);
-      continueBtn.addEventListener('click', function () {
-        const hasSuggested = !!form.querySelector('.donation-amount.selected, input[name="donation_amount"]:checked');
-        const customEl = form.querySelector('input[name="custom_donation_amount"]');
-        const hasCustom = customEl && parseFloat(customEl.value) > 0;
-        if (!hasSuggested && !hasCustom) {
-          indicator.textContent = 'Please choose an amount to continue.';
-          indicator.classList.add('donate-step-warn');
-          return;
-        }
-        indicator.classList.remove('donate-step-warn');
-        gotoStep(2);
+    const clearSelection = function () {
+      donateWidget.querySelectorAll('.donate-amount[aria-pressed="true"]').forEach(function (btn) {
+        btn.setAttribute('aria-pressed', 'false');
       });
-
-      // "Back" — returns to step 1 (only shown on step 2).
-      const backBtn = document.createElement('button');
-      backBtn.type = 'button';
-      backBtn.className = 'donate-wizard-back donate-step-2-el';
-      backBtn.textContent = '← Back';
-      detailsFs.insertAdjacentElement('beforebegin', backBtn);
-      backBtn.addEventListener('click', function () { gotoStep(1); });
-
-      form.dataset.step = '1';
+      selected = null;
+      submit.disabled = true;
+      submit.textContent = 'Choose an amount';
     };
 
-    initWizard();
+    // Highlight a tile and turn the CTA into a confirmation of what's selected.
+    donateWidget.querySelectorAll('.donate-amount').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        clearSelection();
+        btn.setAttribute('aria-pressed', 'true');
+        selected = btn;
+        submit.disabled = false;
+
+        if (btn.dataset.custom) {
+          submit.textContent = 'Continue to checkout →';
+        } else if (btn.dataset.monthly) {
+          submit.textContent = 'Donate $' + btn.dataset.amount + '/month →';
+        } else {
+          submit.textContent = 'Donate $' + btn.dataset.amount + ' →';
+        }
+      });
+    });
+
+    // Switching frequency swaps panels and resets the choice, so a one-time
+    // selection can never be submitted against a monthly link.
+    freqButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const freq = btn.dataset.freq;
+        if (donateWidget.dataset.freq === freq) return;
+
+        donateWidget.dataset.freq = freq;
+        clearSelection();
+
+        freqButtons.forEach(function (other) {
+          const active = other === btn;
+          other.classList.toggle('is-active', active);
+          other.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        panels.forEach(function (panel) {
+          panel.hidden = panel.dataset.panel !== freq;
+        });
+      });
+    });
+
+    submit.addEventListener('click', function () {
+      if (!selected || !selected.dataset.url) return;
+      submit.disabled = true;
+      submit.textContent = 'Taking you to checkout…';
+      window.location.href = selected.dataset.url;
+    });
   }
 
   // ── Video Section: play when scrolled into view, pause when out ──

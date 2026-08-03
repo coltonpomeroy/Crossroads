@@ -85,6 +85,8 @@ function crossroads_commons_register_patterns() {
         'blog-hero',
         'contact-hero',
         'contact-content',
+        'donate-form',
+        'thank-you',
     );
 
     foreach ( $patterns as $pattern ) {
@@ -113,13 +115,11 @@ function crossroads_commons_register_patterns() {
 add_action( 'init', 'crossroads_commons_register_patterns' );
 
 /**
- * Process shortcodes inside wp:html blocks so plugins like WPForms and
- * Charitable render properly (e.g. the donation form inside the Donate modal).
+ * Process shortcodes inside wp:html blocks so plugins like WPForms render
+ * properly (e.g. the contact form).
  */
 function crossroads_commons_render_shortcodes_in_html( $block_content, $block ) {
-    if ( 'core/html' === $block['blockName']
-        && ( has_shortcode( $block_content, 'wpforms' )
-            || has_shortcode( $block_content, 'charitable_donation_form' ) ) ) {
+    if ( 'core/html' === $block['blockName'] && has_shortcode( $block_content, 'wpforms' ) ) {
         $block_content = do_shortcode( $block_content );
     }
     return $block_content;
@@ -127,27 +127,81 @@ function crossroads_commons_render_shortcodes_in_html( $block_content, $block ) 
 add_filter( 'render_block', 'crossroads_commons_render_shortcodes_in_html', 10, 2 );
 
 /**
- * Whether the Donate page is live (exists AND published). Used to gate the
- * "Donate" nav item / CTA so they only appear once the page is published —
- * lets the theme ship while the Donate page is still a draft (pending PayPal).
+ * Stripe Payment Link configuration for the Donate page.
+ *
+ * Reads inc/donation-links.php (see that file for how to populate it) and
+ * normalises the shape so callers can rely on the keys always existing.
+ * Filterable via `crossroads_commons_donation_config` if the URLs ever need to
+ * come from somewhere else (options, env, a settings screen).
  */
-function crossroads_commons_donate_page_live() {
-    $page = get_page_by_path( 'donate' );
-    return ( $page && 'publish' === $page->post_status );
+function crossroads_commons_donation_config() {
+    static $config = null;
+
+    if ( null === $config ) {
+        $file   = get_theme_file_path( 'inc/donation-links.php' );
+        $loaded = file_exists( $file ) ? include $file : array();
+        $loaded = is_array( $loaded ) ? $loaded : array();
+
+        $config = wp_parse_args( $loaded, array(
+            'one_time' => array(),
+            'custom'   => '',
+            'monthly'  => array(),
+        ) );
+
+        /**
+         * Filter the Stripe Payment Link configuration.
+         *
+         * @param array $config Keys: one_time (array of tiers), custom (string
+         *                      URL), monthly (array of tiers). A tier is
+         *                      array( 'amount' => int, 'label' => string,
+         *                      'url' => string ).
+         */
+        $config = apply_filters( 'crossroads_commons_donation_config', $config );
+    }
+
+    return $config;
 }
 
 /**
- * Slim down the Charitable donation form: drop the optional mailing-address and
- * phone fields so the donor only sees name + email. Keeps the form short and
- * focused (the modal on the Donate page). Address is not needed for PayPal.
+ * Whether a donation tier has a Stripe Payment Link URL filled in. Used to skip
+ * tiers that have not been created in Stripe yet.
  */
-function crossroads_commons_trim_donation_fields( $fields ) {
-    foreach ( array( 'address', 'address_2', 'city', 'state', 'postcode', 'country', 'phone' ) as $key ) {
-        unset( $fields[ $key ] );
-    }
-    return $fields;
+function crossroads_commons_donation_tier_has_url( $tier ) {
+    return ! empty( $tier['url'] );
 }
-add_filter( 'charitable_donation_form_user_fields', 'crossroads_commons_trim_donation_fields' );
+
+/**
+ * Whether at least one Stripe Payment Link is configured.
+ */
+function crossroads_commons_donations_configured() {
+    $config = crossroads_commons_donation_config();
+
+    if ( ! empty( $config['custom'] ) ) {
+        return true;
+    }
+
+    foreach ( array( 'one_time', 'monthly' ) as $group ) {
+        foreach ( (array) $config[ $group ] as $tier ) {
+            if ( crossroads_commons_donation_tier_has_url( $tier ) ) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Whether the Donate page is live: the page exists, is published, AND at least
+ * one Stripe Payment Link is configured. Gates the "Donate" nav item / CTA so
+ * they never point at a page that cannot actually take a payment — which means
+ * the theme can ship before the Stripe links exist and light up on its own once
+ * inc/donation-links.php is filled in.
+ */
+function crossroads_commons_donate_page_live() {
+    $page = get_page_by_path( 'donate' );
+    return ( $page && 'publish' === $page->post_status && crossroads_commons_donations_configured() );
+}
 
 /**
  * One-time migration: render pattern content into pages so they are editable
@@ -158,7 +212,7 @@ add_filter( 'charitable_donation_form_user_fields', 'crossroads_commons_trim_don
  * instead of raw HTML code blocks.
  */
 function crossroads_commons_migrate_pattern_content() {
-    if ( get_option( 'crossroads_content_migrated_v10' ) ) {
+    if ( get_option( 'crossroads_content_migrated_v11' ) ) {
         return;
     }
 
@@ -180,14 +234,31 @@ function crossroads_commons_migrate_pattern_content() {
             'title'    => 'Contact',
             'patterns' => array( 'contact-hero', 'color-bar', 'contact-content', 'cta-banner' ),
         ),
+        // Donate is stored as a pattern *reference*, not rendered HTML, so the
+        // Stripe Payment Link URLs stay driven by inc/donation-links.php —
+        // editing that file updates the live page without another migration.
+        'donate' => array(
+            'title'    => 'Donate',
+            'patterns' => array( 'donate-form' ),
+            'dynamic'  => true,
+        ),
+        'thank-you' => array(
+            'title'    => 'Thank You',
+            'patterns' => array( 'thank-you' ),
+        ),
     );
 
     foreach ( $pages as $slug => $config ) {
         $page = get_page_by_path( $slug );
 
-        // Render each pattern file in order.
+        // Render each pattern file in order — unless the page is marked dynamic,
+        // in which case store a core/pattern reference that resolves at render.
         $content = '';
         foreach ( $config['patterns'] as $pattern_slug ) {
+            if ( ! empty( $config['dynamic'] ) ) {
+                $content .= '<!-- wp:pattern {"slug":"crossroads-commons/' . $pattern_slug . '"} /-->' . "\n";
+                continue;
+            }
             $file = get_theme_file_path( "patterns/{$pattern_slug}.php" );
             if ( file_exists( $file ) ) {
                 ob_start();
@@ -236,6 +307,6 @@ function crossroads_commons_migrate_pattern_content() {
         update_option( 'page_for_posts', $blog_page_id );
     }
 
-    update_option( 'crossroads_content_migrated_v10', true );
+    update_option( 'crossroads_content_migrated_v11', true );
 }
 add_action( 'admin_init', 'crossroads_commons_migrate_pattern_content' );
