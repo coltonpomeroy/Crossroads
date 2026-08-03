@@ -928,8 +928,10 @@ section.hero {
 .donate-amount[aria-pressed="true"] .donate-amount-value,
 .donate-amount[aria-pressed="true"] .donate-amount-label { color: var(--white); }
 
-/* "Other amount" spans the full row */
-.donate-amount-custom { grid-column: 1 / -1; }
+/* An odd number of tiles would strand the last one beside an empty cell, so
+   stretch the orphan across both columns and the grid always reads as
+   deliberate — whatever mix of tiers and "Other amount" a panel ends up with. */
+.donate-amounts > .donate-amount:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .donate-amount-custom .donate-amount-value { font-size: 18px; }
 
 /* Primary action */
