@@ -17,7 +17,6 @@ $donate_ready      = $donate_one_time || $donate_monthly || $donate_custom_url;
 <!-- wp:group {"className":"donate-section","tagName":"section","align":"full","layout":{"type":"default"}} -->
 <section class="wp-block-group alignfull donate-section"><!-- wp:html -->
 <div class="donate-intro">
-  <p class="script-callout">Every gift builds something</p>
   <h1>Help Build Crossroads Commons</h1>
   <p>Your gift funds the next phase of community-led revitalization in South OKC — gathering places, small businesses, and green space the whole neighborhood can share.</p>
 </div>
@@ -87,7 +86,7 @@ $donate_ready      = $donate_one_time || $donate_monthly || $donate_custom_url;
 
     <p class="donate-secure">
       <span class="material-symbols-outlined" aria-hidden="true">lock</span>
-      Secure checkout powered by Stripe. Card, Apple&nbsp;Pay, and Google&nbsp;Pay accepted.
+      Secure checkout powered by Stripe.
     </p>
   </div>
 </div>
