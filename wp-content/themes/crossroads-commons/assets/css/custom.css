@@ -849,6 +849,12 @@ section.hero {
 /* ══════════════════════════════════════════
    DONATE PAGE (Stripe Payment Links)
    ══════════════════════════════════════════ */
+/* Bottom spacing lives on the section, not the card: WordPress's flow-layout
+   CSS zeroes margin-block-end on a container's last child, so a margin there
+   gets stripped and the card butts into the footer. Same reason the header
+   spacing uses padding-top on the first element. */
+.donate-section { padding-bottom: 96px; }
+
 .donate-intro {
   max-width: 720px; margin: 0 auto; padding: 80px 24px 24px;
   text-align: center;
@@ -865,7 +871,7 @@ section.hero {
 
 /* Card wrapping the amount picker */
 .donate-form-card {
-  width: 100%; max-width: 560px; margin: 24px auto 96px;
+  width: 100%; max-width: 560px; margin: 24px auto 0;
   background: var(--white); border-radius: 20px;
   padding: 32px 36px 28px;
   box-shadow: 0 12px 40px rgba(38,31,34,0.10);
@@ -955,6 +961,7 @@ section.hero {
 }
 
 @media (max-width: 480px) {
+  .donate-section { padding-bottom: 64px; }
   .donate-intro { padding-top: 56px; }
   .donate-form-card { padding: 26px 20px 22px; }
   .donate-amounts { grid-template-columns: 1fr 1fr; }
