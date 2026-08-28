@@ -310,3 +310,42 @@ function crossroads_commons_migrate_pattern_content() {
     update_option( 'crossroads_content_migrated_v11', true );
 }
 add_action( 'admin_init', 'crossroads_commons_migrate_pattern_content' );
+
+/**
+ * One-time repair: point the Donate page at the donate-form pattern instead of
+ * a frozen copy of its markup.
+ *
+ * Sites migrated before the 'dynamic' flag existed got the *rendered* pattern
+ * baked into post_content, so later edits to patterns/donate-form.php — new
+ * copy, changed Stripe tiers — never reach the live page. Storing a
+ * core/pattern reference instead makes the pattern file the source of truth
+ * again, which is why this only ever needs to run once.
+ *
+ * Deliberately narrow: re-running the full migration above would rewrite every
+ * page and discard anything edited in the block editor since.
+ */
+function crossroads_commons_repair_donate_reference() {
+    if ( get_option( 'crossroads_donate_reference_v1' ) ) {
+        return;
+    }
+
+    $page = get_page_by_path( 'donate' );
+
+    // No page yet means the migration above has not run here — leave the flag
+    // unset so this retries on a later request rather than silently no-opping.
+    if ( ! $page ) {
+        return;
+    }
+
+    $reference = '<!-- wp:pattern {"slug":"crossroads-commons/donate-form"} /-->' . "\n";
+
+    if ( trim( $page->post_content ) !== trim( $reference ) ) {
+        wp_update_post( array(
+            'ID'           => $page->ID,
+            'post_content' => $reference,
+        ) );
+    }
+
+    update_option( 'crossroads_donate_reference_v1', true );
+}
+add_action( 'admin_init', 'crossroads_commons_repair_donate_reference' );
