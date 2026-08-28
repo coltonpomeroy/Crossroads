@@ -17,8 +17,8 @@ $donate_ready      = $donate_one_time || $donate_monthly || $donate_custom_url;
 <!-- wp:group {"className":"donate-section","tagName":"section","align":"full","layout":{"type":"default"}} -->
 <section class="wp-block-group alignfull donate-section"><!-- wp:html -->
 <div class="donate-intro">
-  <h1>Help Build Crossroads Commons</h1>
-  <p>Your gift funds the next phase of community-led revitalization in South OKC — gathering places, small businesses, and green space the whole neighborhood can share.</p>
+  <h1>Help us launch Crossroads Commons</h1>
+  <p>Every gift moves us closer to the dream of a beautiful gathering space.</p>
 </div>
 
 <?php if ( ! $donate_ready ) : ?>
@@ -56,7 +56,6 @@ $donate_ready      = $donate_one_time || $donate_monthly || $donate_custom_url;
         <button type="button" class="donate-amount donate-amount-custom" aria-pressed="false"
                 data-url="<?php echo esc_url( $donate_custom_url ); ?>" data-custom="1">
           <span class="donate-amount-value">Other amount</span>
-          <span class="donate-amount-label">You choose</span>
         </button>
         <?php endif; ?>
       </div>

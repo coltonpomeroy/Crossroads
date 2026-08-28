@@ -34,19 +34,17 @@ import { fileURLToPath } from 'node:url';
 // ── Amount tiers ────────────────────────────────────────────────────────────
 // Keep these in sync with inc/donation-links.php (this script rewrites it).
 const ONE_TIME = [
-  { amount: 25, label: 'Neighbor' },
-  { amount: 50, label: 'Friend' },
-  { amount: 100, label: 'Supporter' },
-  { amount: 250, label: 'Builder' },
-  { amount: 500, label: 'Cornerstone' },
+  { amount: 25, label: '' },
+  { amount: 100, label: '' },
+  { amount: 500, label: '' },
 ];
 
 const MONTHLY = [
   { amount: 10, label: '' },
-  { amount: 25, label: 'Neighbor' },
-  { amount: 50, label: 'Friend' },
-  { amount: 100, label: 'Supporter' },
-  { amount: 250, label: 'Builder' },
+  { amount: 25, label: '' },
+  { amount: 50, label: '' },
+  { amount: 100, label: '' },
+  { amount: 250, label: '' },
 ];
 
 // Stripe caps customer-chosen amounts at $10,000 by default.

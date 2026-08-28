@@ -25,11 +25,9 @@ return array(
 
     // One-time gifts — fixed amounts.
     'one_time' => array(
-        array( 'amount' => 25,  'label' => 'Neighbor',    'url' => 'https://donate.stripe.com/eVq7sD8hwg7i3AN4qD6sw00' ),
-        array( 'amount' => 50,  'label' => 'Friend',      'url' => 'https://donate.stripe.com/6oUcMX8hw3kwc7j1er6sw01' ),
-        array( 'amount' => 100, 'label' => 'Supporter',   'url' => 'https://donate.stripe.com/fZu5kveFU5sE8V77CP6sw02' ),
-        array( 'amount' => 250, 'label' => 'Builder',     'url' => 'https://donate.stripe.com/3cIbIT55k4oAc7j5uH6sw03' ),
-        array( 'amount' => 500, 'label' => 'Cornerstone', 'url' => 'https://donate.stripe.com/00w5kvdBQ08k4ER3mz6sw04' ),
+        array( 'amount' => 25,  'label' => '', 'url' => 'https://donate.stripe.com/eVq7sD8hwg7i3AN4qD6sw00' ),
+        array( 'amount' => 100, 'label' => '', 'url' => 'https://donate.stripe.com/fZu5kveFU5sE8V77CP6sw02' ),
+        array( 'amount' => 500, 'label' => '', 'url' => 'https://donate.stripe.com/00w5kvdBQ08k4ER3mz6sw04' ),
     ),
 
     // One-time gift of any amount — the donor types the amount on Stripe's page.
@@ -37,10 +35,10 @@ return array(
 
     // Recurring monthly gifts — fixed amounts only (Stripe limitation).
     'monthly'  => array(
-        array( 'amount' => 10,  'label' => '',            'url' => 'https://buy.stripe.com/eVq9ALdBQ9IU0oB7CP6sw06' ),
-        array( 'amount' => 25,  'label' => 'Neighbor',    'url' => 'https://buy.stripe.com/3cI8wHcxM5sE2wJf5h6sw07' ),
-        array( 'amount' => 50,  'label' => 'Friend',      'url' => 'https://buy.stripe.com/00wfZ90P47AM7R30an6sw08' ),
-        array( 'amount' => 100, 'label' => 'Supporter',   'url' => 'https://buy.stripe.com/9B6aEP41g9IU4ER8GT6sw09' ),
-        array( 'amount' => 250, 'label' => 'Builder',     'url' => 'https://buy.stripe.com/5kQdR19lA8EQefr8GT6sw0a' ),
+        array( 'amount' => 10,  'label' => '', 'url' => 'https://buy.stripe.com/eVq9ALdBQ9IU0oB7CP6sw06' ),
+        array( 'amount' => 25,  'label' => '', 'url' => 'https://buy.stripe.com/3cI8wHcxM5sE2wJf5h6sw07' ),
+        array( 'amount' => 50,  'label' => '', 'url' => 'https://buy.stripe.com/00wfZ90P47AM7R30an6sw08' ),
+        array( 'amount' => 100, 'label' => '', 'url' => 'https://buy.stripe.com/9B6aEP41g9IU4ER8GT6sw09' ),
+        array( 'amount' => 250, 'label' => '', 'url' => 'https://buy.stripe.com/5kQdR19lA8EQefr8GT6sw0a' ),
     ),
 );
