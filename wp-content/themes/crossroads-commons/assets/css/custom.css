@@ -862,10 +862,14 @@ section.hero {
 .donate-intro h1 {
   font-size: clamp(36px, 5vw, 56px); line-height: 1.1;
   color: var(--purple); margin: 8px 0 20px;
+  /* Even out the two lines instead of letting the last word drop alone.
+     Unsupported browsers just fall back to normal wrapping. */
+  text-wrap: balance;
 }
 .donate-intro p {
   font-size: 18px; line-height: 1.7; color: var(--charcoal);
   margin: 0 auto; max-width: 560px;
+  text-wrap: balance;
 }
 
 /* Card wrapping the amount picker */
