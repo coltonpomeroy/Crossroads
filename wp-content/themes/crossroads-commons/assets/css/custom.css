@@ -858,11 +858,14 @@ section.hero {
 /* The bar runs along the top of the hero, not the bottom: the footer carries
    its own inset stripe, and two bars meeting there read as a misprint. */
 .donate-topbar { padding-top: 72px; position: relative; z-index: 1; background: var(--white); }
-.donate-hero { margin-top: 0 !important; padding: 80px 24px 96px; }
+.donate-hero { margin-top: 0 !important; padding: 52px 24px 68px; }
 /* The script face carries a lot of built-in leading, so its line box is
-   trimmed here to sit tight against the headline the way About's does. */
+   trimmed here and the spacing below is set deliberately instead.
+   The gaps widen as the elements grow further apart in role: the kicker and
+   the wordmark are one sentence, the subtitle is a different voice, and the
+   card is a different job again. */
 .donate-hero .script-callout { margin: 0; line-height: 1.15; }
-.donate-hero h1 { margin-top: 6px; }
+.donate-hero h1 { margin-top: 16px; margin-bottom: 0; }
 /* The headline is the wordmark itself, so the h1 just sizes the artwork. */
 .donate-hero { --donate-logo-w: min(460px, 100%); }
 .donate-hero-logo img {
@@ -882,14 +885,12 @@ section.hero {
   background-size: cover;
   background-position: center 38%;
 }
-.donate-hero .subtitle {
-  max-width: 470px;
-  /* Sits below the wordmark, so it reads as supporting copy rather than
-     competing with it. */
-  font-size: 17px;
-  /* Solid white, not the 85% used on the flat-gradient heroes: over the
-     rendering the translucent version drops under the 4.5:1 AA floor. */
-  color: var(--white);
+/* The card opens with the line that used to sit under the wordmark, so it
+   introduces the form instead of floating above it. */
+.donate-lead {
+  margin: 0 0 22px;
+  font-size: 17px; line-height: 1.6;
+  color: var(--charcoal); text-align: center;
   /* Even out the two lines instead of letting the last word drop alone.
      Unsupported browsers just fall back to normal wrapping. */
   text-wrap: balance;
@@ -902,7 +903,7 @@ section.hero {
    needs its own stacking context to clear the .page-hero::before wash. */
 .donate-form-wrap {
   position: relative; z-index: 1;
-  max-width: 560px; margin: 36px auto 0;
+  max-width: 560px; margin: 52px auto 0;
 }
 
 /* Card wrapping the amount picker */

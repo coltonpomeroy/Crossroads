@@ -29,7 +29,6 @@ $donate_default    = 500;
 <div class="page-hero-content">
   <p class="script-callout">Help us launch</p>
   <h1 class="donate-hero-logo"><img src="<?php echo $donate_logo; ?>" alt="Crossroads Commons" width="656" height="139" /></h1>
-  <p class="subtitle">Every gift moves us closer to the dream of a beautiful gathering space.</p>
 </div>
 
 <div class="donate-form-wrap">
@@ -40,6 +39,8 @@ $donate_default    = 500;
 </div>
 <?php else : ?>
 <div class="donate-form-card">
+  <p class="donate-lead">Every gift moves us closer to the dream of a beautiful gathering space.</p>
+
   <div class="donate-widget" data-freq="one_time">
 
     <?php if ( $donate_one_time && $donate_monthly ) : ?>
