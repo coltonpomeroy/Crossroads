@@ -13,14 +13,26 @@ $donate_one_time   = array_values( array_filter( (array) ( $donate_config['one_t
 $donate_monthly    = array_values( array_filter( (array) ( $donate_config['monthly'] ?? array() ), $donate_has_url ) );
 $donate_custom_url = $donate_config['custom'] ?? '';
 $donate_ready      = $donate_one_time || $donate_monthly || $donate_custom_url;
+$donate_logo       = esc_url( get_theme_file_uri( 'assets/images/logos/cc-logo-horizontal-white.svg' ) );
+// Amount highlighted when the page loads, so the form opens on a suggested
+// gift rather than an inert button. Set to null for no pre-selection.
+$donate_default    = 500;
 ?>
-<!-- wp:group {"className":"donate-section","tagName":"section","align":"full","layout":{"type":"default"}} -->
-<section class="wp-block-group alignfull donate-section"><!-- wp:html -->
-<div class="donate-intro">
-  <h1>Help us launch Crossroads Commons</h1>
-  <p>Every gift moves us closer to the dream of a beautiful gathering space.</p>
+<!-- wp:group {"className":"donate-topbar","align":"full","layout":{"type":"default"}} -->
+<div class="wp-block-group alignfull donate-topbar"><!-- wp:html -->
+<div class="color-bar"><div></div><div></div><div></div><div></div><div></div></div>
+<!-- /wp:html --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"page-hero donate-hero donate-hero-image","tagName":"section","align":"full","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull page-hero donate-hero donate-hero-image"><!-- wp:html -->
+<div class="page-hero-content">
+  <p class="script-callout">Help us launch</p>
+  <h1 class="donate-hero-logo"><img src="<?php echo $donate_logo; ?>" alt="Crossroads Commons" width="656" height="139" /></h1>
+  <p class="subtitle">Every gift moves us closer to the dream of a beautiful gathering space.</p>
 </div>
 
+<div class="donate-form-wrap">
 <?php if ( ! $donate_ready ) : ?>
 <div class="donate-form-card donate-form-card-empty">
   <p class="donate-empty-title">Online giving is coming soon.</p>
@@ -44,7 +56,8 @@ $donate_ready      = $donate_one_time || $donate_monthly || $donate_custom_url;
         <?php foreach ( $donate_one_time as $tier ) : ?>
         <button type="button" class="donate-amount" aria-pressed="false"
                 data-url="<?php echo esc_url( $tier['url'] ); ?>"
-                data-amount="<?php echo esc_attr( $tier['amount'] ); ?>">
+                data-amount="<?php echo esc_attr( $tier['amount'] ); ?>"
+                <?php if ( null !== $donate_default && (int) $tier['amount'] === (int) $donate_default ) : ?>data-default="1"<?php endif; ?>>
           <span class="donate-amount-value">$<?php echo esc_html( number_format( (float) $tier['amount'] ) ); ?></span>
           <?php if ( ! empty( $tier['label'] ) ) : ?>
           <span class="donate-amount-label"><?php echo esc_html( $tier['label'] ); ?></span>
@@ -90,5 +103,6 @@ $donate_ready      = $donate_one_time || $donate_monthly || $donate_custom_url;
   </div>
 </div>
 <?php endif; ?>
+</div>
 <!-- /wp:html --></section>
 <!-- /wp:group -->

@@ -853,31 +853,65 @@ section.hero {
    CSS zeroes margin-block-end on a container's last child, so a margin there
    gets stripped and the card butts into the footer. Same reason the header
    spacing uses padding-top on the first element. */
-.donate-section { padding-bottom: 96px; }
-
-.donate-intro {
-  max-width: 720px; margin: 0 auto; padding: 80px 24px 24px;
-  text-align: center;
+/* The donate hero borrows .page-hero wholesale so this page opens the same way
+   About, Media and Contact do — gradient band, script callout, colour bar. */
+/* The bar runs along the top of the hero, not the bottom: the footer carries
+   its own inset stripe, and two bars meeting there read as a misprint. */
+.donate-topbar { padding-top: 72px; position: relative; z-index: 1; background: var(--white); }
+.donate-hero { margin-top: 0 !important; padding: 80px 24px 96px; }
+/* The script face carries a lot of built-in leading, so its line box is
+   trimmed here to sit tight against the headline the way About's does. */
+.donate-hero .script-callout { margin: 0; line-height: 1.15; }
+.donate-hero h1 { margin-top: 6px; }
+/* The headline is the wordmark itself, so the h1 just sizes the artwork. */
+.donate-hero { --donate-logo-w: min(460px, 100%); }
+.donate-hero-logo img {
+  display: block; margin: 0 auto;
+  width: var(--donate-logo-w); height: auto;
 }
-.donate-intro h1 {
-  font-size: clamp(36px, 5vw, 56px); line-height: 1.1;
-  color: var(--purple); margin: 8px 0 20px;
+
+
+/* The hero carries the site rendering behind a purple wash, so the "beautiful
+   gathering space" the copy promises is actually shown. Reuses the image the
+   homepage hero already ships. Wash opacity is the contrast dial: lightening it
+   further starts to cost the white headline its legibility. */
+.donate-hero.donate-hero-image {
+  background-image:
+    linear-gradient(135deg, rgba(76, 18, 65, 0.86) 0%, rgba(110, 30, 75, 0.78) 55%, rgba(212, 51, 101, 0.63) 100%),
+    url('../images/hero-vision-day.png');
+  background-size: cover;
+  background-position: center 38%;
+}
+.donate-hero .subtitle {
+  max-width: 470px;
+  /* Sits below the wordmark, so it reads as supporting copy rather than
+     competing with it. */
+  font-size: 17px;
+  /* Solid white, not the 85% used on the flat-gradient heroes: over the
+     rendering the translucent version drops under the 4.5:1 AA floor. */
+  color: var(--white);
   /* Even out the two lines instead of letting the last word drop alone.
      Unsupported browsers just fall back to normal wrapping. */
   text-wrap: balance;
 }
-.donate-intro p {
-  font-size: 18px; line-height: 1.7; color: var(--charcoal);
-  margin: 0 auto; max-width: 560px;
-  text-wrap: balance;
+
+/* Cream ground so the white card lifts off the page instead of dissolving
+   into it, matching the cream bands used elsewhere on the site. */
+/* The card sits on the hero itself. It lives outside .page-hero-content so it
+   keeps normal left alignment instead of inheriting that block's centring, and
+   needs its own stacking context to clear the .page-hero::before wash. */
+.donate-form-wrap {
+  position: relative; z-index: 1;
+  max-width: 560px; margin: 36px auto 0;
 }
 
 /* Card wrapping the amount picker */
 .donate-form-card {
-  width: 100%; max-width: 560px; margin: 24px auto 0;
+  width: 100%; max-width: 560px; margin: 0 auto;
   background: var(--white); border-radius: 20px;
   padding: 32px 36px 28px;
-  box-shadow: 0 12px 40px rgba(38,31,34,0.10);
+  /* Deep lift so the card reads as sitting above the rendering behind it. */
+  box-shadow: 0 24px 60px rgba(30, 8, 26, 0.34);
   border: 1px solid #efeced;
 }
 .donate-form-card .donate-form-note {
@@ -964,8 +998,8 @@ section.hero {
 }
 
 @media (max-width: 480px) {
-  .donate-section { padding-bottom: 64px; }
-  .donate-intro { padding-top: 56px; }
+  .donate-form-wrap { margin-top: 28px; }
+  .donate-hero { padding: 64px 20px 72px; }
   .donate-form-card { padding: 26px 20px 22px; }
   .donate-amounts { grid-template-columns: 1fr 1fr; }
   .donate-amount { min-height: 66px; }

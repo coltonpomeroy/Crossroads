@@ -88,6 +88,13 @@ document.addEventListener('DOMContentLoaded', function () {
       submit.textContent = 'Taking you to checkout…';
       window.location.href = selected.dataset.url;
     });
+
+    // Open on a suggested amount. Clicking the tile rather than setting the
+    // state by hand keeps the CTA label and the selected URL in one place.
+    const preselect = donateWidget.querySelector(
+      '.donate-panel:not([hidden]) .donate-amount[data-default]'
+    );
+    if (preselect) preselect.click();
   }
 
   // ── Video Section: play when scrolled into view, pause when out ──
