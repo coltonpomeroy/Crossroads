@@ -25,9 +25,9 @@ $board_dir = esc_url( get_theme_file_uri( 'assets/images/board' ) );
   </div>
   <div class="board-member">
     <div class="avatar">
-      <img src="<?php echo $board_dir; ?>/everado-borunda.jpg" alt="Everado Borunda" style="object-position: center 20%;">
+      <img src="<?php echo $board_dir; ?>/everado-borunda.jpg" alt="Everardo Borunda" style="object-position: center 20%;">
     </div>
-    <h4>Everado Borunda</h4>
+    <h4>Everardo Borunda</h4>
   </div>
   <div class="board-member">
     <div class="avatar">
